@@ -17,6 +17,7 @@ public class EndCanvasScript : MonoBehaviour
 
     public void RestartGame()
     {
+        GameManager.Instance.ResetValues();
         SceneManager.LoadScene(_firstScene);
     }
 

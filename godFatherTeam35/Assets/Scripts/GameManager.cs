@@ -21,11 +21,15 @@ public class GameManager : MonoBehaviour
         else Destroy(this);
 
         DontDestroyOnLoad(Instance);
+        ResetValues();
+    }
 
+    public void ResetValues()
+    {
         //Reset placement position index & vector 3
         _placementPositionIndex = -1;
         _placementPosition = Vector3.zero;
 
-        GameManager.Instance.GameEnded = false;
+        GameEnded = false;
     }
 }

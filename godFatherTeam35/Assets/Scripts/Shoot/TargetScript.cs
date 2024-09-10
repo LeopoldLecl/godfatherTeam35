@@ -25,6 +25,10 @@ public class TargetScript : MonoBehaviour
     {
         ShootingScript.HasFired += CheckFire;
     }
+    private void OnDisable()
+    {
+        ShootingScript.HasFired -= CheckFire;
+    }
 
     private void CheckFire()
     {
