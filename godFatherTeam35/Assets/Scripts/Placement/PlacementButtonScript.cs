@@ -1,26 +1,26 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class PlacementButtonScript : MonoBehaviour
+public class PlacementButtonScript : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private int _placementValue;
-    [SerializeField] private Image _ValidationFillImage;
+    [SerializeField] private SpriteRenderer _ValidationFillImage;
+
+    private void OnValidate()
+    {
+        if (_placementValue < 0)
+        {
+            Debug.LogWarning("placement value est sous 0, etes-vous sure de l'avoir définit ?", gameObject);
+        }
+    }
 
     private void Reset()
     {
-        if (_placementValue <= 0) 
+        SpriteRenderer buttonSpriteRenderer = GetComponent<SpriteRenderer>();
+        if (_ValidationFillImage != null || buttonSpriteRenderer != null)
         {
-            Debug.LogWarning("placement value est egale ou sous 0, etes-vous sure de l'avoir définit ?", gameObject);
-        }
-
-
-        Image buttonImg = GetComponent<Image>();
-        if (_ValidationFillImage != null || buttonImg != null)
-        {
-            _ValidationFillImage.sprite = buttonImg.sprite;
+            _ValidationFillImage.sprite = buttonSpriteRenderer.sprite;
         }
     }
 
@@ -28,12 +28,27 @@ public class PlacementButtonScript : MonoBehaviour
     {
         if (_ValidationFillImage != null)
         {
-            _ValidationFillImage.gameObject.SetActive(GameManager.Instance.PlacementPosition == _placementValue);
+            _ValidationFillImage.gameObject.SetActive(GameManager.Instance.PlacementPositionIndex == _placementValue);
         }
     }
 
     public void SelectPosition()
     {
-        GameManager.Instance.PlacementPosition = _placementValue;
+        GameManager.Instance.PlacementPositionIndex = _placementValue;
+        GameManager.Instance.PlacementPosition = transform.position;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        SelectPosition();
+    }
+
+    private void AddPhysics2DRaycaster()
+    {
+        Physics2DRaycaster physicsRaycaster = FindObjectOfType<Physics2DRaycaster>();
+        if (physicsRaycaster == null)
+        {
+            Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
+        }
     }
 }

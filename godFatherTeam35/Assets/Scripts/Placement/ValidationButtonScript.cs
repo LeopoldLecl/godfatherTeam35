@@ -13,7 +13,7 @@ public class ValidationButtonScript : MonoBehaviour
 
     public void Validation()
     {
-        if(GameManager.Instance.PlacementPosition == -1)
+        if(GameManager.Instance.PlacementPositionIndex == -1)
         {
             ValidationImpossible.Invoke();
             return;

@@ -8,6 +8,12 @@ public class TargetScript : MonoBehaviour
 {
     [SerializeField] int _correspondingPlacement;
     [SerializeField] float _radius;
+    bool _isAimed;
+
+    private void Awake()
+    {
+        transform.position = GameManager.Instance.PlacementPosition;
+    }
 
     private void OnEnable()
     {
@@ -16,12 +22,10 @@ public class TargetScript : MonoBehaviour
 
     private void CheckFire()
     {
-        throw new NotImplementedException();
+        GameManager.Instance.IsPlayerHit = _isAimed;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, _radius);
-    }
+    private void OnMouseEnter() => _isAimed = true;
+    private void OnMouseExit() => _isAimed = false;
+
 }
