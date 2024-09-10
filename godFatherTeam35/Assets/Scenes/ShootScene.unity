@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 365311772ebf40249bebe533a98c85e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resultText: {fileID: 0}
+  _resultText: {fileID: 991949626}
   _firstScene: PlacementScene
   _wonText: You got him !
   _loseText: Damn ! You missed him !
