@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int PlacementPositionIndex { get => _placementPositionIndex; set => _placementPositionIndex = value; }
     public Vector3 PlacementPosition { get => _placementPosition; set => _placementPosition = value; }
     public bool IsPlayerHit { get => _IsPlayerHit; set => _IsPlayerHit = value; }
-
+    public bool GameEnded { get; set; }
 
     private void Awake()
     {
@@ -25,5 +25,7 @@ public class GameManager : MonoBehaviour
         //Reset placement position index & vector 3
         _placementPositionIndex = -1;
         _placementPosition = Vector3.zero;
+
+        GameManager.Instance.GameEnded = false;
     }
 }

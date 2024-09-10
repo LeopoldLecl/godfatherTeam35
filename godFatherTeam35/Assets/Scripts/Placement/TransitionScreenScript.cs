@@ -46,7 +46,7 @@ public class TransitionScreenScript : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-
+        _fadeInImg.color = new Color(0f, 0f, 0f, 1f);
         _transitionAnimationFinished = true;
     }
 }

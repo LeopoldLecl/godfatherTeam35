@@ -9,7 +9,7 @@ public class ShootingScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !GameManager.Instance.GameEnded)
         {
             HasFired.Invoke();
         } 
