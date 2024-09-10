@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameManager Instance;
+    public static GameManager Instance;
 
     private int _placementPosition;
 
-    public int PlacementPosition { get => _placementPosition; }
+    public int PlacementPosition { get => _placementPosition; set => _placementPosition = value; }
 
     private void Awake()
     {
@@ -16,5 +16,7 @@ public class GameManager : MonoBehaviour
         else Destroy(this);
 
         DontDestroyOnLoad(Instance);
+
+        _placementPosition = -1;
     }
 }
