@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameManager Instance;
 
-    // Update is called once per frame
-    void Update()
+    private int _placementPosition;
+
+    public int PlacementPosition { get => _placementPosition; }
+
+    private void Awake()
     {
-        
+        if (Instance == null) Instance = this;
+        else Destroy(this);
+
+        DontDestroyOnLoad(Instance);
     }
 }
