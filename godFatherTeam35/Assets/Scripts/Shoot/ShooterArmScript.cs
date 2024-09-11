@@ -11,6 +11,11 @@ public class ShooterArmScript : MonoBehaviour
     [SerializeField] Transform _rotationPoint;
     [SerializeField] Transform _reloadPoint;
 
+    [Header("EndPointParameters")]
+    [SerializeField] float _endPointDefaultYPosition;
+    [SerializeField] float _endPointYFollow;
+    [SerializeField] float _endPointXFollow;
+
     [Header("Shaking")]
     [SerializeField] float _shakeDelay;
     [SerializeField] float _shakeAmplitude;
@@ -64,7 +69,7 @@ public class ShooterArmScript : MonoBehaviour
             _rb.MovePosition(mousePo);
             _rb.SetRotation(_armTransform.eulerAngles.z);
 
-            Vector2 newEndPosition = new Vector2(Camera.main.transform.position.x, transform.position.y /2.0f - 8.7f);
+            Vector2 newEndPosition = new Vector2(transform.position.x / _endPointXFollow, transform.position.y / _endPointYFollow + _endPointDefaultYPosition);
             _rbEndPoint.MovePosition(newEndPosition);
 
             yield return null;
@@ -82,6 +87,11 @@ public class ShooterArmScript : MonoBehaviour
     {
         _isReloading = true;
         StopCoroutine(_followMouse);
+        if (_shakingCoroutine != null)
+        {
+            StopCoroutine(_shakingCoroutine);
+            _shakingCoroutine = null;
+        }
 
         //Rangement d'arme
         float timeElapsed = 0;
@@ -93,7 +103,7 @@ public class ShooterArmScript : MonoBehaviour
         {
             _rb.MovePosition(Vector3.Lerp(startingPosition, endingPosition, timeElapsed / (duration *.25f)));
 
-            Vector2 newEndPosition = new Vector2(Camera.main.transform.position.x, -8.7f);
+            Vector2 newEndPosition = new Vector2(Camera.main.transform.position.x, _endPointDefaultYPosition);
             _rbEndPoint.MovePosition(Vector3.Lerp(startingEndPointPosition, newEndPosition, timeElapsed / (duration * .25f)));
 
             timeElapsed += Time.deltaTime;
@@ -113,7 +123,7 @@ public class ShooterArmScript : MonoBehaviour
             MousePosition.z = 0;
             _rb.MovePosition(Vector3.Lerp(startingPosition, MousePosition, timeElapsed / (duration * .25f)));
 
-            Vector2 newEndPosition = new Vector2(Camera.main.transform.position.x, transform.position.y / 2.0f - 8.7f);
+            Vector2 newEndPosition = new Vector2(transform.position.x / _endPointXFollow, transform.position.y / _endPointYFollow + _endPointDefaultYPosition);
             _rbEndPoint.MovePosition(Vector3.Lerp(startingEndPointPosition, newEndPosition, timeElapsed / (duration * .25f)));
 
             timeElapsed += Time.deltaTime;

@@ -309,6 +309,9 @@ MonoBehaviour:
   _armTransform: {fileID: 1650406130}
   _rotationPoint: {fileID: 1827429186}
   _reloadPoint: {fileID: 672984056}
+  _endPointDefaultYPosition: -8.7
+  _endPointYFollow: 2
+  _endPointXFollow: 1.8
   _shakeDelay: 2
   _shakeAmplitude: 0.2
   _shakeMinDistance: 0.6
@@ -793,7 +796,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.5}
-  m_ConnectedAnchor: {x: 0, y: 1.3199825}
+  m_ConnectedAnchor: {x: 0, y: 0.019982338}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
