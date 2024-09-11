@@ -36,7 +36,7 @@ public class ShooterArmScript : MonoBehaviour
             _rb.MovePosition(mousePo);
             _rb.SetRotation(_armTransform.eulerAngles.z);
 
-            Vector2 newEndPosition = new Vector2(Camera.main.transform.position.x, _rbEndPoint.position.y);
+            Vector2 newEndPosition = new Vector2(Camera.main.transform.position.x, transform.position.y /2.0f - 8.7f);
             _rbEndPoint.MovePosition(newEndPosition);
 
             yield return null;
@@ -52,10 +52,15 @@ public class ShooterArmScript : MonoBehaviour
         float timeElapsed = 0;
         Vector3 startingPosition = transform.position;
         Vector3 endingPosition = _reloadPoint.position;
+        Vector3 startingEndPointPosition = _rbEndPoint.position;
 
         while (timeElapsed < (duration * .25f))
         {
             _rb.MovePosition(Vector3.Lerp(startingPosition, endingPosition, timeElapsed / (duration *.25f)));
+
+            Vector2 newEndPosition = new Vector2(Camera.main.transform.position.x, -8.7f);
+            _rbEndPoint.MovePosition(Vector3.Lerp(startingEndPointPosition, newEndPosition, timeElapsed / (duration * .25f)));
+
             timeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -66,12 +71,16 @@ public class ShooterArmScript : MonoBehaviour
         //Degaine l'arme
         timeElapsed = 0;
         startingPosition = _reloadPoint.position;
+        startingEndPointPosition = _rbEndPoint.position;
         while (timeElapsed < (duration * .25f))
         {
             Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             MousePosition.z = 0;
-
             _rb.MovePosition(Vector3.Lerp(startingPosition, MousePosition, timeElapsed / (duration * .25f)));
+
+            Vector2 newEndPosition = new Vector2(Camera.main.transform.position.x, transform.position.y / 2.0f - 8.7f);
+            _rbEndPoint.MovePosition(Vector3.Lerp(startingEndPointPosition, newEndPosition, timeElapsed / (duration * .25f)));
+
             timeElapsed += Time.deltaTime;
             yield return null;
         }

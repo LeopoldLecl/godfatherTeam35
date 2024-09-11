@@ -10,6 +10,11 @@ public class PlacementUIScript : MonoBehaviour
 
     private GameObject _character;
 
+    private void Awake()
+    {
+        _CancelButton.SetActive(false);
+    }
+
     private void OnEnable()
     {
         Drag.HasChosePlacement += SpawnCancelButton;
@@ -31,6 +36,6 @@ public class PlacementUIScript : MonoBehaviour
     {
         GameManager.Instance.PlacementPositionIndex = -1;
         _character.SetActive(true);
-        gameObject.SetActive(false);
+        _CancelButton.SetActive(false);
     }
 }

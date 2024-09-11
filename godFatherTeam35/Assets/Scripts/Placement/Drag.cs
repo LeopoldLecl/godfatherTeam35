@@ -9,6 +9,7 @@ public class Drag : MonoBehaviour
 
     private Vector2 _startingPosition;
     private Vector3 _offset;
+    private bool _lockOnCamera;
 
     public static Action<GameObject> HasChosePlacement;
 
@@ -21,11 +22,21 @@ public class Drag : MonoBehaviour
     {
         //Reset position when (re)activated
         transform.position = _startingPosition;
+        _lockOnCamera = true;
+    }
+
+    private void Update()
+    {
+        if (_lockOnCamera)
+        {
+            transform.position = _startingPosition + new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
+        }
     }
 
     private void OnMouseDown()
     {
         _offset = transform.position - GetMouseWorldPos();
+        _lockOnCamera = false;
     }
 
     private void OnMouseDrag()
@@ -38,10 +49,11 @@ public class Drag : MonoBehaviour
         //Si pas de placement
         if (_overlapedButton == null)
         {
-            transform.position = _startingPosition;
+            transform.position = _startingPosition + new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
+            _lockOnCamera = true;
             return;
         }
-
+        
         HasChosePlacement.Invoke(gameObject);
         _overlapedButton.SelectPosition();
         gameObject.SetActive(false);
