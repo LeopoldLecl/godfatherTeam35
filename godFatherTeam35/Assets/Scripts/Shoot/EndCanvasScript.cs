@@ -24,5 +24,6 @@ public class EndCanvasScript : MonoBehaviour
     private void OnEnable()
     {
         _resultText.text = GameManager.Instance.IsPlayerHit ? _wonText : _loseText;
+        Cursor.visible = true;
     }
 }

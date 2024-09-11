@@ -24,7 +24,7 @@ public class NoHideoutPanelScript : MonoBehaviour
         float timeElapsed = 0;
         while (timeElapsed < duration)
         {
-            _image.color = new Color(1f,1f,1f, 1 - timeElapsed / duration);
+            _image.color = new Color(0f,0f,0f, 1 - timeElapsed / duration);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
