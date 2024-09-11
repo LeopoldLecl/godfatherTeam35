@@ -18,14 +18,22 @@ public class ShooterArmScript : MonoBehaviour
 
     [Header("Shaking")]
     [SerializeField] float _shakeDelay;
-    [SerializeField] float _shakeAmplitude;
     [SerializeField] float _shakeMinDistance;
+    [Space(2)]
+    [SerializeField] float _shakeRate;
+    [SerializeField] float _shakeSpeed;
+    [SerializeField] float _shakeLimitDistance;
+
+    private bool _isReloading;
+
+    private Vector3 _shakePosition;
+    private Vector3 _shakeDirection;
+    private bool _isShaking;
 
     Coroutine _followMouse;
     Coroutine _reloadCoroutine;
     Coroutine _shakingCoroutine;
-    private bool _isReloading;
-    private float _actualRandomAmplitude;
+
     public bool IsReloading { get => _isReloading;}
 
     private void Awake()
@@ -41,6 +49,11 @@ public class ShooterArmScript : MonoBehaviour
         _reloadCoroutine = StartCoroutine(ReloadAnimation(duration));
     }
 
+    private void Update()
+    {
+        print(_shakePosition);
+    }
+
     IEnumerator FollowMouse()
     {
         while (true)
@@ -48,11 +61,12 @@ public class ShooterArmScript : MonoBehaviour
             Vector3 mousePo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePo.z = 0;
 
-            //Shaking condition
+            //Shaking trigger condition
             if (Vector2.Distance(transform.position, mousePo) < _shakeMinDistance)
             {
                 if (_shakingCoroutine == null)
                     _shakingCoroutine = StartCoroutine(ShakingDelay());
+                _isShaking = true;
             }
             else
             {
@@ -60,11 +74,24 @@ public class ShooterArmScript : MonoBehaviour
                 {
                     StopCoroutine(_shakingCoroutine);
                     _shakingCoroutine = null;
+                    _isShaking = false;
                 }
-                _actualRandomAmplitude = 0f;
             }
-            //Add randomness to shaking
-            mousePo += new Vector3(Random.Range(-_actualRandomAmplitude, _actualRandomAmplitude), Random.Range(-_actualRandomAmplitude, _actualRandomAmplitude), 0);
+            //Random smooth shaking
+            if(_isShaking)
+            {
+                //Apply shaking
+                _shakePosition += _shakeDirection * _shakeSpeed * Time.deltaTime;
+                mousePo += _shakePosition;
+                
+                //Change direction & clamp if going too far
+                if(_shakePosition.x > _shakeLimitDistance || _shakePosition.y < -_shakeLimitDistance || _shakePosition.x < -_shakeLimitDistance || _shakePosition.y > _shakeLimitDistance)
+                {
+                    _shakeDirection *= -1;
+                    _shakePosition = new Vector2( Mathf.Clamp(_shakePosition.x, -_shakeLimitDistance, _shakeLimitDistance), 
+                                                  Mathf.Clamp(_shakePosition.y, - _shakeLimitDistance, _shakeLimitDistance));
+                }
+            }
 
             _rb.MovePosition(mousePo);
             _rb.SetRotation(_armTransform.eulerAngles.z);
@@ -72,15 +99,21 @@ public class ShooterArmScript : MonoBehaviour
             Vector2 newEndPosition = new Vector2(transform.position.x / _endPointXFollow, transform.position.y / _endPointYFollow + _endPointDefaultYPosition);
             _rbEndPoint.MovePosition(newEndPosition);
 
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
     }
 
     IEnumerator ShakingDelay()
     {
-        _actualRandomAmplitude = 0;
+        _shakePosition = Vector3.zero;
         yield return new WaitForSeconds(_shakeDelay);
-        _actualRandomAmplitude = _shakeAmplitude;
+
+        //Change direction randomly in function of Rate
+        while (true)
+        {
+            _shakeDirection = new Vector2(Random.Range(-1, 2), Random.Range(-1, 2));
+            yield return new WaitForSeconds(_shakeRate);
+        }
     }
 
     IEnumerator ReloadAnimation(float duration)
@@ -91,6 +124,7 @@ public class ShooterArmScript : MonoBehaviour
         {
             StopCoroutine(_shakingCoroutine);
             _shakingCoroutine = null;
+            _isShaking = false;
         }
 
         //Rangement d'arme
