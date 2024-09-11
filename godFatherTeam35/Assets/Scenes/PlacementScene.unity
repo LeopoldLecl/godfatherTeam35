@@ -890,15 +890,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef16dd59abaeb444e84aceb23870b59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leftLimit: -10
-  _rightLimit: 10
-  _topLimit: -10
-  _bottomLimit: 10
+  _leftLimit: -2
+  _rightLimit: 2
+  _topLimit: -2
+  _bottomLimit: 2
   _leftDeadZone: 0.2
   _rightDeadZone: 0.8
   _topDeadZone: 0.2
   _bottomDeadZone: 0.8
-  _horizontalSpeed: 0.1
+  _horizontalSpeed: 0.05
   _verticalSpeed: 0.05
 --- !u!114 &1260298748
 MonoBehaviour:

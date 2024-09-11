@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ShooterArmScript : MonoBehaviour
 {
-    Coroutine _followMouse;
-
+    [Header("References")]
     [SerializeField] Rigidbody2D _rb;
+    [SerializeField] Transform _armTransform;
+    [SerializeField] Transform _rotationPoint;
+
+    Coroutine _followMouse;
 
     private void Awake()
     {
@@ -26,6 +29,7 @@ public class ShooterArmScript : MonoBehaviour
             Vector3 mousePo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePo.z = 0;
             _rb.MovePosition(mousePo);
+            _rb.SetRotation(_armTransform.eulerAngles.z); 
 
             yield return null;
         }
