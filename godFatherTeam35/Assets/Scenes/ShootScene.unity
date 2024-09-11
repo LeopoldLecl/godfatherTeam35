@@ -284,7 +284,7 @@ Transform:
   m_GameObject: {fileID: 254277979}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.52, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -323,7 +323,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -1.25}
-  m_ConnectedAnchor: {x: 0, y: 0.5208334}
+  m_ConnectedAnchor: {x: 0, y: 0.4675}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -653,7 +653,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -5.08, z: 0}
-  m_LocalScale: {x: 0.8, y: 7.2, z: 1}
+  m_LocalScale: {x: 1.1, y: 7.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1426,8 +1426,8 @@ Transform:
   m_GameObject: {fileID: 1650406128}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.52, z: 0}
-  m_LocalScale: {x: 0.8, y: 7.2, z: 1}
+  m_LocalPosition: {x: 0, y: -0.12, z: 0}
+  m_LocalScale: {x: 0.8, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1475,7 +1475,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: -0.4}
-  m_ConnectedAnchor: {x: 0, y: 0.5166667}
+  m_ConnectedAnchor: {x: 0, y: 0.46666667}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -1484,6 +1484,37 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 90
     m_UpperAngle: 270
+--- !u!1 &1728535450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1728535451}
+  m_Layer: 0
+  m_Name: ------ Shooter ------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1728535451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728535450}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 988.22943, y: 681.3041, z: 3.1040232}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1827429185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,9 +1825,10 @@ SceneRoots:
   m_Roots:
   - {fileID: 1885546534}
   - {fileID: 376261985}
+  - {fileID: 1983970027}
+  - {fileID: 1728535451}
   - {fileID: 254277980}
   - {fileID: 1650406130}
   - {fileID: 677928739}
   - {fileID: 1574797039}
   - {fileID: 672984056}
-  - {fileID: 1983970027}

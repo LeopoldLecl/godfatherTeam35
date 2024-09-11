@@ -16,7 +16,6 @@ public class NoHideoutPanelScript : MonoBehaviour
 
     private void OnEnable()
     {
-        print("ok");
         _FadeOutCoroutine = StartCoroutine(FadeInEnumerator(_duration));
     }
 
