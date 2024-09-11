@@ -8,8 +8,10 @@ public class TargetScript : MonoBehaviour
 {
     [Header("Reference")]
     [SerializeField] GameObject _endCanvas; //Oui le mieux cela aurait été de faire un Action mais .. game jam donc pas le temps
+    [SerializeField] Animator _animator;
     [Space(5)]
     [SerializeField] int _correspondingPlacement;
+
     bool _isAimed;
 
     private void Awake()
@@ -35,8 +37,18 @@ public class TargetScript : MonoBehaviour
         {
             GameManager.Instance.IsPlayerHit = true;
             GameManager.Instance.GameEnded = true;
-            _endCanvas.SetActive(true);
+            StartCoroutine(DeathAnimationRoutine());
         }
+    }
+
+    IEnumerator DeathAnimationRoutine()
+    {
+        if (_animator != null) 
+        {
+            _animator.SetTrigger("dead");
+        }
+        yield return new WaitForSeconds(0);
+        _endCanvas.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) 
