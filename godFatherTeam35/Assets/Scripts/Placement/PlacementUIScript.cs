@@ -31,5 +31,6 @@ public class PlacementUIScript : MonoBehaviour
     {
         GameManager.Instance.PlacementPositionIndex = -1;
         _character.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

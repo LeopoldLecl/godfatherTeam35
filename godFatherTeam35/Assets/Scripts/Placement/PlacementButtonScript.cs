@@ -33,7 +33,8 @@ public class PlacementButtonScript : MonoBehaviour, IPointerDownHandler
         {
             _validationFillImage.gameObject.SetActive(GameManager.Instance.PlacementPositionIndex == _placementValue || GameManager.Instance.PlacementPositionIndex == -1);
             //Bool dans les 2 sens
-            _animator.SetBool("hidden", GameManager.Instance.PlacementPositionIndex == _placementValue);
+            if(_animator != null)
+                _animator.SetBool("hidden", GameManager.Instance.PlacementPositionIndex == _placementValue);
         }
     }
 
