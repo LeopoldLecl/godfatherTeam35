@@ -4,8 +4,10 @@ using UnityEngine.EventSystems;
 
 public class PlacementButtonScript : MonoBehaviour, IPointerDownHandler
 {
-    [SerializeField] private int _placementValue;
+    [Header("References")]
     [SerializeField] private SpriteRenderer _ValidationFillImage;
+    [Space(5)]
+    [SerializeField] private int _placementValue;
 
     private void OnValidate()
     {

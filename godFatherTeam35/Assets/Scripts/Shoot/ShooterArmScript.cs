@@ -8,24 +8,28 @@ public class ShooterArmScript : MonoBehaviour
     [SerializeField] Rigidbody2D _rb;
     [SerializeField] Transform _armTransform;
     [SerializeField] Transform _rotationPoint;
+    [SerializeField] Transform _reloadPoint;
 
     Coroutine _followMouse;
+    Coroutine _reloadCoroutine;
+    private bool _isReloading;
+    public bool IsReloading { get => _isReloading;}
 
     private void Awake()
     {
         _followMouse = StartCoroutine(FollowMouse());
+        _isReloading = false;
     }
+
+    public void StartReload(float duration)
+    {
+        _reloadCoroutine = StartCoroutine(ReloadAnimation(duration));
+    }
+
     IEnumerator FollowMouse()
     {
-        while (!GameManager.Instance.GameEnded)
+        while (true)
         {
-            /* Version avec transform position (obselete)
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.z = Camera.main.nearClipPlane;
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(mousePos);
-            transform.position = mousePosition;
-            */
-
             Vector3 mousePo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePo.z = 0;
             _rb.MovePosition(mousePo);
@@ -33,5 +37,42 @@ public class ShooterArmScript : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    IEnumerator ReloadAnimation(float duration)
+    {
+        _isReloading = true;
+        StopCoroutine(_followMouse);
+
+        //Rangement d'arme
+        float timeElapsed = 0;
+        Vector3 startingPosition = transform.position;
+        Vector3 endingPosition = _reloadPoint.position;
+
+        while (timeElapsed < (duration * .25f))
+        {
+            _rb.MovePosition(Vector3.Lerp(startingPosition, endingPosition, timeElapsed / (duration *.25f)));
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        //Attente de rechargement
+        yield return new WaitForSeconds(duration / 2f);
+
+        //Degaine l'arme
+        timeElapsed = 0;
+        startingPosition = _reloadPoint.position;
+        while (timeElapsed < (duration * .25f))
+        {
+            Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            MousePosition.z = 0;
+
+            _rb.MovePosition(Vector3.Lerp(startingPosition, MousePosition, timeElapsed / (duration * .25f)));
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        _isReloading = false;
+        _followMouse = StartCoroutine(FollowMouse());
     }
 }
