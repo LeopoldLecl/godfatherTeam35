@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlacementButtonScript : MonoBehaviour, IPointerDownHandler
+public class PlacementButtonScript : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private SpriteRenderer _validationFillImage;
@@ -43,12 +43,6 @@ public class PlacementButtonScript : MonoBehaviour, IPointerDownHandler
         GameManager.Instance.PlacementPositionIndex = _placementValue;
         GameManager.Instance.PlacementPosition = transform.position;
     }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        SelectPosition();
-    }
-
     private void AddPhysics2DRaycaster()
     {
         Physics2DRaycaster physicsRaycaster = FindObjectOfType<Physics2DRaycaster>();
