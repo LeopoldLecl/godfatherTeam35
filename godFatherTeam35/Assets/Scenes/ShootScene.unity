@@ -313,10 +313,13 @@ MonoBehaviour:
   _endPointYFollow: 2
   _endPointXFollow: 1.5
   _shakeDelay: 2
-  _shakeMinDistance: 3
+  _shakeMinDistance: 1
   _shakeRate: 0.5
   _shakeSpeed: 0.8
   _shakeLimitDistance: 0.2
+  _shakeRandomMinimum: 1
+  _shakeRandomMaximum: 2
+  _shakeRandomMaxNumber: 8
 --- !u!233 &254277982
 HingeJoint2D:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShooterArmScript : MonoBehaviour
@@ -19,10 +18,14 @@ public class ShooterArmScript : MonoBehaviour
     [Header("Shaking")]
     [SerializeField] float _shakeDelay;
     [SerializeField] float _shakeMinDistance;
-    [Space(2)]
+    [Space(5)]
     [SerializeField] float _shakeRate;
     [SerializeField] float _shakeSpeed;
     [SerializeField] float _shakeLimitDistance;
+    [Space(5)]
+    [SerializeField] float _shakeRandomMinimum;
+    [SerializeField] float _shakeRandomMaximum;
+    [SerializeField] float _shakeRandomMaxNumber;
 
     private bool _isReloading;
 
@@ -33,6 +36,7 @@ public class ShooterArmScript : MonoBehaviour
     Coroutine _followMouse;
     Coroutine _reloadCoroutine;
     Coroutine _shakingCoroutine;
+    Coroutine _shakingRandomCoroutine;
 
     public bool IsReloading { get => _isReloading;}
 
@@ -49,11 +53,6 @@ public class ShooterArmScript : MonoBehaviour
         _reloadCoroutine = StartCoroutine(ReloadAnimation(duration));
     }
 
-    private void Update()
-    {
-        print(_shakePosition);
-    }
-
     IEnumerator FollowMouse()
     {
         while (true)
@@ -66,7 +65,6 @@ public class ShooterArmScript : MonoBehaviour
             {
                 if (_shakingCoroutine == null)
                     _shakingCoroutine = StartCoroutine(ShakingDelay());
-                _isShaking = true;
             }
             else
             {
@@ -75,6 +73,10 @@ public class ShooterArmScript : MonoBehaviour
                     StopCoroutine(_shakingCoroutine);
                     _shakingCoroutine = null;
                     _isShaking = false;
+                    //Activate random shake if not already
+                    if (_shakingRandomCoroutine == null)
+                        _shakingRandomCoroutine = StartCoroutine(RandomShaking());
+
                 }
             }
             //Random smooth shaking
@@ -94,7 +96,7 @@ public class ShooterArmScript : MonoBehaviour
             }
 
             _rb.MovePosition(mousePo);
-            _rb.SetRotation(_armTransform.eulerAngles.z);
+            _rb.SetRotation(_armTransform.eulerAngles.z + 1);
 
             Vector2 newEndPosition = new Vector2(transform.position.x / _endPointXFollow, transform.position.y / _endPointYFollow + _endPointDefaultYPosition);
             _rbEndPoint.MovePosition(newEndPosition);
@@ -103,12 +105,35 @@ public class ShooterArmScript : MonoBehaviour
         }
     }
 
+    IEnumerator RandomShaking()
+    {
+        yield return new WaitForSeconds(Random.Range(_shakeRandomMinimum, _shakeRandomMaximum));
+        //Change direction randomly in function of Rate
+        _isShaking = true;
+        //Do a random number of shake
+        for(int i= 2; i<_shakeRandomMaxNumber; i++)
+        {
+            _shakeDirection = new Vector2(Random.Range(-1, 2), Random.Range(-1, 2));
+            yield return new WaitForSeconds(_shakeRate);
+        }
+        _isShaking = false;
+        _shakingRandomCoroutine = null;
+    }
+
     IEnumerator ShakingDelay()
     {
         _shakePosition = Vector3.zero;
         yield return new WaitForSeconds(_shakeDelay);
 
         //Change direction randomly in function of Rate
+        _isShaking = true;
+        //Stop random shaking coroutine if active
+        if(_shakingRandomCoroutine != null)
+        {
+            StopCoroutine(_shakingRandomCoroutine);
+            _shakingRandomCoroutine = null;
+        }
+
         while (true)
         {
             _shakeDirection = new Vector2(Random.Range(-1, 2), Random.Range(-1, 2));
