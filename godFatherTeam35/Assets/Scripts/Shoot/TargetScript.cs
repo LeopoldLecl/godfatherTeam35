@@ -1,25 +1,42 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class TargetScript : MonoBehaviour
 {
     [Header("Reference")]
     [SerializeField] GameObject _endCanvas; //Oui le mieux cela aurait été de faire un Action mais .. game jam donc pas le temps
-    [SerializeField] Animator _animator;
     [Space(5)]
     [SerializeField] int _correspondingPlacement;
 
-    bool _isAimed;
+    [Header("Images")]
+    [SerializeField] Sprite _normalImage;
+    [SerializeField] Sprite _hiddenImage;
+    [SerializeField] Sprite _falselyHiddenImage;
+
+    [Header("Events")]
+    [SerializeField] UnityEvent RightHideoutDestroyed;
+    [SerializeField] UnityEvent FalseHideoutDestroyed;
+
+    SpriteRenderer _sr;
+    
+    private bool _isAimed;
+    private bool _isTarget;
+    private bool _isDestroyed = false;
 
     private void Awake()
     {
+        _sr = GetComponent<SpriteRenderer>();
+
         if (GameManager.Instance != null)
-        {
-            transform.position = GameManager.Instance.PlacementPosition;
-        }
+            _isTarget = GameManager.Instance.PlacementPositionIndex == _correspondingPlacement;
+
+        if (_isTarget)
+            _sr.sprite = _hiddenImage;
+        else
+            _sr.sprite = Random.Range(0, 2) == 0 ? _normalImage : _falselyHiddenImage;
     }
 
     private void OnEnable()
@@ -33,20 +50,25 @@ public class TargetScript : MonoBehaviour
 
     private void CheckFire()
     {
-        if (_isAimed)
+        if (_isAimed && !_isDestroyed)
         {
-            GameManager.Instance.IsPlayerHit = true;
-            GameManager.Instance.GameEnded = true;
-            StartCoroutine(DeathAnimationRoutine());
+            if (_isTarget)
+            {
+                GameManager.Instance.IsPlayerHit = true;
+                GameManager.Instance.GameEnded = true;
+                StartCoroutine(DeathAnimationRoutine());
+            }
+            else
+            {
+                _isDestroyed = true;
+                FalseHideoutDestroyed?.Invoke();
+            }
         }
     }
 
     IEnumerator DeathAnimationRoutine()
     {
-        if (_animator != null) 
-        {
-            _animator.SetTrigger("dead");
-        }
+        RightHideoutDestroyed?.Invoke();
         yield return new WaitForSeconds(0);
         _endCanvas.SetActive(true);
     }

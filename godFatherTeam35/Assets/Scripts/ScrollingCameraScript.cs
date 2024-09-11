@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ScrollingCameraScript : MonoBehaviour
 {
+    [SerializeField] bool _RandomSpawnX;
+
     [Header("Camera Limit")]
     [SerializeField] float _leftLimit;
     [SerializeField] float _rightLimit;
@@ -23,6 +25,15 @@ public class ScrollingCameraScript : MonoBehaviour
     [Header("Camera Speed")]
     [SerializeField] float _horizontalSpeed;
     [SerializeField] float _verticalSpeed;
+
+    private void Start()
+    {
+        if (_RandomSpawnX)
+        {
+            transform.position = new Vector2(Random.Range(_leftLimit, _rightLimit),0);
+        }
+    }
+
     private void Update()
     {
         Vector2 mousePosition = new Vector2(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height);
