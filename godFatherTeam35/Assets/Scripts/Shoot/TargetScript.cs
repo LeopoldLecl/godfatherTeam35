@@ -14,7 +14,7 @@ public class TargetScript : MonoBehaviour
 
     private void Awake()
     {
-        if(GameManager.Instance != null)
+        if (GameManager.Instance != null)
         {
             transform.position = GameManager.Instance.PlacementPosition;
         }
@@ -39,7 +39,15 @@ public class TargetScript : MonoBehaviour
         }
     }
 
-    private void OnMouseEnter() => _isAimed = true;
-    private void OnMouseExit() => _isAimed = false;
+    private void OnTriggerEnter2D(Collider2D collision) 
+    { 
+        if (collision.GetComponent<ShooterArmScript>() != null) 
+            _isAimed = true;
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponent<ShooterArmScript>() != null)
+            _isAimed = false;
+    }
 
 }

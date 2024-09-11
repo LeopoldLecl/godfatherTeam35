@@ -11,13 +11,22 @@ public class ShooterArmScript : MonoBehaviour
     [SerializeField] Transform _rotationPoint;
     [SerializeField] Transform _reloadPoint;
 
+    [Header("Shaking")]
+    [SerializeField] float _shakeDelay;
+    [SerializeField] float _shakeAmplitude;
+    [SerializeField] float _shakeMinDistance;
+
     Coroutine _followMouse;
     Coroutine _reloadCoroutine;
+    Coroutine _shakingCoroutine;
     private bool _isReloading;
+    private float _actualRandomAmplitude;
     public bool IsReloading { get => _isReloading;}
 
     private void Awake()
     {
+        Cursor.visible = false;
+
         _followMouse = StartCoroutine(FollowMouse());
         _isReloading = false;
     }
@@ -33,6 +42,25 @@ public class ShooterArmScript : MonoBehaviour
         {
             Vector3 mousePo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePo.z = 0;
+
+            //Shaking condition
+            if (Vector2.Distance(transform.position, mousePo) < _shakeMinDistance)
+            {
+                if (_shakingCoroutine == null)
+                    _shakingCoroutine = StartCoroutine(ShakingDelay());
+            }
+            else
+            {
+                if(_shakingCoroutine != null)
+                {
+                    StopCoroutine(_shakingCoroutine);
+                    _shakingCoroutine = null;
+                }
+                _actualRandomAmplitude = 0f;
+            }
+            //Add randomness to shaking
+            mousePo += new Vector3(Random.Range(-_actualRandomAmplitude, _actualRandomAmplitude), Random.Range(-_actualRandomAmplitude, _actualRandomAmplitude), 0);
+
             _rb.MovePosition(mousePo);
             _rb.SetRotation(_armTransform.eulerAngles.z);
 
@@ -41,6 +69,13 @@ public class ShooterArmScript : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    IEnumerator ShakingDelay()
+    {
+        _actualRandomAmplitude = 0;
+        yield return new WaitForSeconds(_shakeDelay);
+        _actualRandomAmplitude = _shakeAmplitude;
     }
 
     IEnumerator ReloadAnimation(float duration)
