@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlacementCameraScript : MonoBehaviour
+public class ScrollingCameraScript : MonoBehaviour
 {
     [Header("Camera Limit")]
     [SerializeField] float _leftLimit;

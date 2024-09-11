@@ -6,6 +6,7 @@ public class ShooterArmScript : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Rigidbody2D _rb;
+    [SerializeField] Rigidbody2D _rbEndPoint;
     [SerializeField] Transform _armTransform;
     [SerializeField] Transform _rotationPoint;
     [SerializeField] Transform _reloadPoint;
@@ -33,7 +34,10 @@ public class ShooterArmScript : MonoBehaviour
             Vector3 mousePo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePo.z = 0;
             _rb.MovePosition(mousePo);
-            _rb.SetRotation(_armTransform.eulerAngles.z); 
+            _rb.SetRotation(_armTransform.eulerAngles.z);
+
+            Vector2 newEndPosition = new Vector2(Camera.main.transform.position.x, _rbEndPoint.position.y);
+            _rbEndPoint.MovePosition(newEndPosition);
 
             yield return null;
         }
