@@ -10,8 +10,7 @@ public class PlacementButtonScript : MonoBehaviour
     [SerializeField] private int _placementValue;
 
     [Header("Images")]
-    [SerializeField] private Sprite _normalImage;
-    [SerializeField] private Sprite _hiddenImage;
+    [SerializeField] private GameObject _hiddenObject;
 
     private SpriteRenderer _sr;
     
@@ -43,9 +42,8 @@ public class PlacementButtonScript : MonoBehaviour
         {
             _validationFillImage.gameObject.SetActive(GameManager.Instance.PlacementPositionIndex == _placementValue || GameManager.Instance.PlacementPositionIndex == -1);
         }
-
-        _sr.sprite = GameManager.Instance.PlacementPositionIndex == _placementValue ? _hiddenImage : _normalImage;
-        _validationFillImage.sprite = GameManager.Instance.PlacementPositionIndex == _placementValue ? _hiddenImage : _normalImage;
+        if(_hiddenObject != null)
+            _hiddenObject.SetActive(GameManager.Instance.PlacementPositionIndex == _placementValue);
     }
 
     public void SelectPosition()
