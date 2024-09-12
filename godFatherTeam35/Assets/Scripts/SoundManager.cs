@@ -13,14 +13,19 @@ public class SoundManager : MonoBehaviour
         instance = this;
     }
 
-    public void SpawnSound(Transform position, AudioClip clip)
+    public void SpawnSound(AudioClip clip, Vector3 position)
     {
-        GameObject newSound = Instantiate(m_noisePrefab, position.position, position.rotation);
+        GameObject newSound = Instantiate(m_noisePrefab, position, Quaternion.identity);
 
         AudioSource newSoundSource = newSound.GetComponent<AudioSource>();
         newSoundSource.clip = clip;
         newSoundSource.Play();
 
         Destroy(newSound, clip.length);
+    }
+
+    public void SpawnRandomSound(List<AudioClip> clipList, Vector3 position)
+    {
+        SpawnSound(clipList[Random.Range(0, clipList.Count)], position);
     }
 }

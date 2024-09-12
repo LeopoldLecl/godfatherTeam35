@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ShooterArmScript : MonoBehaviour
@@ -26,6 +27,9 @@ public class ShooterArmScript : MonoBehaviour
     [SerializeField] float _shakeRandomMinimum;
     [SerializeField] float _shakeRandomMaximum;
     [SerializeField] float _shakeRandomMaxNumber;
+
+    [Header("Sounds")]
+    [SerializeField] List<AudioClip> _reloadingSounds;
 
     private bool _isReloading;
 
@@ -150,6 +154,7 @@ public class ShooterArmScript : MonoBehaviour
 
     IEnumerator ReloadAnimation(float duration)
     {
+        //Initialisation & stoppage de coroutine
         _isReloading = true;
         StopCoroutine(_followMouse);
         if (_shakingCoroutine != null)
@@ -158,6 +163,9 @@ public class ShooterArmScript : MonoBehaviour
             _shakingCoroutine = null;
             _isShaking = false;
         }
+
+        //Joue son
+        SoundManager.instance.SpawnRandomSound(_reloadingSounds,transform.position);
 
         //Rangement d'arme
         float timeElapsed = 0;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -19,6 +20,11 @@ public class TargetScript : MonoBehaviour
     [Header("Events")]
     [SerializeField] UnityEvent RightHideoutDestroyed;
     [SerializeField] UnityEvent FalseHideoutDestroyed;
+
+    [Header("Sounds")]
+    [SerializeField] List<AudioClip> _shotCharacterSound;
+    [SerializeField] List<AudioClip> _shotNearMissed;
+    [SerializeField] List<AudioClip> _shotMissed;
 
     SpriteRenderer _sr;
     
