@@ -64,7 +64,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6cc3bbf7a49d1e94aacaa54954af2c4b, type: 3}
   _shotMissedSound:
   - {fileID: 8300000, guid: e2a12067465c42a4da3568e7bfa0cd5e, type: 3}
-  _nearMissedShotDistance: 5
+  _nearMissedShotDistance: 2
   _falseTargetSounds:
   - {fileID: 8300000, guid: 9519a8b033db6ee4281dc9613e744da8, type: 3}
   - {fileID: 8300000, guid: f8d94c4eb2a1bc14aac9f166f713879b, type: 3}

@@ -520,12 +520,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _armScript: {fileID: 254277981}
+  _shaderShotScript: {fileID: 1007512143}
   _reloadingTime: 5
   _fireSounds:
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  - {fileID: 8300000, guid: 735f225381cd1b847b86f91313303b01, type: 3}
+  - {fileID: 8300000, guid: 36965a1081073ed44900ee026f392504, type: 3}
+  - {fileID: 8300000, guid: c3d4d20745961d24eb3db3989a38220e, type: 3}
 --- !u!58 &254277985
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class ShootingScript : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private ShooterArmScript _armScript;
+    [SerializeField] private placeholderShotScript _shaderShotScript;
     [Space(5)]
     [SerializeField] private float _reloadingTime;
     [Header("Sounds")]
@@ -27,6 +28,8 @@ public class ShootingScript : MonoBehaviour
                 SoundManager.instance.SpawnRandomSound(_fireSounds, transform.position);
             
             _armScript.StartReload(_reloadingTime);
-        } 
+        }
+
+        _shaderShotScript.IsReady = _isReloading;
     }
 }

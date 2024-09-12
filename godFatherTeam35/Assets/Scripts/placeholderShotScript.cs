@@ -25,7 +25,7 @@ public class placeholderShotScript : MonoBehaviour
     [Space(5)]
     [SerializeField] private GameObject aimPoint;
 
-
+    public bool IsReady { get; set; }
 
     private void Start()
     {
@@ -47,7 +47,7 @@ public class placeholderShotScript : MonoBehaviour
     private void Update()
     {
         // Si le bouton gauche de la souris est cliqué et que le matériau n'a pas déjà été changé
-        if (Input.GetMouseButtonDown(0) && !isMaterialChanged)
+        if (Input.GetMouseButtonDown(0) && !isMaterialChanged && IsReady)
         {
             // Change le matériel en ExplosionMat
             sprite.material = ExplosionMat;
@@ -58,6 +58,7 @@ public class placeholderShotScript : MonoBehaviour
             // Déclenche le screen shake au même moment que le changement de matériel
             TriggerShake(shakeDuration, shakeMagnitude);
             SpawnParticlesAtMousePosition(particuleImpact);
+            SpawnParticlesAtMousePosition(particleFumes);
 
 
         }
@@ -66,7 +67,9 @@ public class placeholderShotScript : MonoBehaviour
         if (shakeTimeRemaining > 0)
         {
             // Déplace la caméra de manière aléatoire autour de sa position initiale
-            cameraTransform.localPosition = initialPosition + Random.insideUnitSphere * shakeMagnitude;
+            Vector3 shakingPosition = initialPosition + Random.insideUnitSphere * shakeMagnitude;
+            shakingPosition.z = cameraTransform.localPosition.z; //Reset nearClipPlane 
+            cameraTransform.localPosition = shakingPosition;
 
             // Réduit le temps restant du shake
             shakeTimeRemaining -= Time.deltaTime;
@@ -85,7 +88,6 @@ public class placeholderShotScript : MonoBehaviour
         yield return new WaitForSeconds(delay);
         sprite.material = noExplosionMat;
         isMaterialChanged = false;
-        SpawnParticlesAtMousePosition(particleFumes);
     }
 
     // Méthode pour déclencher le Screen Shake avec une durée et une magnitude personnalisées
