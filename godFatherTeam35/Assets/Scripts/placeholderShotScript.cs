@@ -20,7 +20,9 @@ public class placeholderShotScript : MonoBehaviour
     private Vector3 initialPosition;
     private float shakeTimeRemaining = 0f;
 
-    [SerializeField] private GameObject particlePrefab;
+    [SerializeField] private GameObject particleFumes;
+    [SerializeField] private GameObject particuleImpact;
+
 
 
 
@@ -54,7 +56,7 @@ public class placeholderShotScript : MonoBehaviour
 
             // Déclenche le screen shake au même moment que le changement de matériel
             TriggerShake(shakeDuration, shakeMagnitude);
-
+            SpawnParticlesAtMousePosition(particuleImpact);
 
 
         }
@@ -82,7 +84,7 @@ public class placeholderShotScript : MonoBehaviour
         yield return new WaitForSeconds(delay);
         sprite.material = noExplosionMat;
         isMaterialChanged = false;
-        SpawnParticlesAtMousePosition();
+        SpawnParticlesAtMousePosition(particleFumes);
     }
 
     // Méthode pour déclencher le Screen Shake avec une durée et une magnitude personnalisées
@@ -93,7 +95,7 @@ public class placeholderShotScript : MonoBehaviour
         shakeTimeRemaining = shakeDuration;
     }
 
-    private void SpawnParticlesAtMousePosition()
+    private void SpawnParticlesAtMousePosition(GameObject particuleType)
     {
         // Obtient la position de la souris en coordonnées écran
         Vector3 mousePosition = Input.mousePosition;
@@ -102,6 +104,6 @@ public class placeholderShotScript : MonoBehaviour
         Vector3 worldPosition = camera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, camera.nearClipPlane));
 
         // Instancie le système de particules à la position calculée, avec la même rotation que le prefab
-        Instantiate(particlePrefab, worldPosition, Quaternion.identity);
+        Instantiate(particuleType, worldPosition, Quaternion.identity);
     }
 }
