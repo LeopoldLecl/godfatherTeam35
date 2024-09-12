@@ -84,7 +84,8 @@ public class TargetScript : MonoBehaviour
             else
             {
                 _isDestroyed = true;
-                StopCoroutine(_falseTargetCoroutine);
+                if(_falseTargetCoroutine != null)
+                    StopCoroutine(_falseTargetCoroutine);
                 FalseHideoutDestroyed?.Invoke();
             }
         }

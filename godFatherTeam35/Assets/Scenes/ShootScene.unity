@@ -1531,6 +1531,7 @@ MonoBehaviour:
   camera: {fileID: 1885546533}
   particleFumes: {fileID: 5954917953467700514, guid: 2289021a84caaca489728ff6cec3844a, type: 3}
   particuleImpact: {fileID: 255041462727067789, guid: b4febfe1ba4c4bc419c5fc7bc4c66b42, type: 3}
+  aimPoint: {fileID: 254277979}
 --- !u!1 &1095393806
 GameObject:
   m_ObjectHideFlags: 0
