@@ -6,8 +6,11 @@ using UnityEngine;
 public class Drag : MonoBehaviour
 {
     [SerializeField] List<AudioClip> placedSounds;
+    [SerializeField] Sprite _normalSprite;
+    [SerializeField] Sprite _draggedImage;
 
     private PlacementButtonScript _overlapedButton;
+    private SpriteRenderer _sr;
     private Vector2 _startingPosition;
     private Vector3 _offset;
     private bool _lockOnCamera;
@@ -17,6 +20,8 @@ public class Drag : MonoBehaviour
 
     private void Awake()
     {
+        _sr = GetComponent<SpriteRenderer>();
+
         _startingPosition = transform.position;
         _lockOnCamera = true;
     }
@@ -25,6 +30,7 @@ public class Drag : MonoBehaviour
     {
         //Reset position when (re)activated
         transform.position = _startingPosition;
+        _sr.sprite = _normalSprite;
 
         //Si pas lock sur Camera -> alors repositionnement
         if (!_lockOnCamera)
@@ -53,6 +59,7 @@ public class Drag : MonoBehaviour
     private void OnMouseDrag()
     {
         transform.position = GetMouseWorldPos() + _offset;
+        _sr.sprite = _draggedImage;
     }
 
     private void OnMouseUp()
@@ -62,6 +69,7 @@ public class Drag : MonoBehaviour
         {
             transform.position = _startingPosition + new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y);
             _lockOnCamera = true;
+            _sr.sprite = _normalSprite;
             return;
         }
         

@@ -22,8 +22,6 @@ public class placeholderShotScript : MonoBehaviour
 
     [SerializeField] private GameObject particleFumes;
     [SerializeField] private GameObject particuleImpact;
-    [Space(5)]
-    [SerializeField] private GameObject aimPoint;
 
     public bool IsReady { get; set; }
 
@@ -96,6 +94,7 @@ public class placeholderShotScript : MonoBehaviour
         shakeDuration = duration;
         shakeMagnitude = magnitude;
         shakeTimeRemaining = shakeDuration;
+        initialPosition = cameraTransform.localPosition;
     }
 
     private void SpawnParticlesAtAimPointPosition(GameObject particuleType, GameObject pointPosition)

@@ -52,9 +52,9 @@ MonoBehaviour:
   _firstPoint: {fileID: 7675652198674248199}
   _secondPoint: {fileID: 7428198079778657422}
   _shadowTransform: {fileID: 7185501368741140149}
-  _ZPosition: 10
+  _ZPosition: 0
   _WalkingMode: 1
-  _duration: 3
+  _duration: 6
   _stepSpeed: 0.4
   _stepAmplitude: 0.1
   _TimeBetweenCycles: 1

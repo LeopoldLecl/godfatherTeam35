@@ -32,7 +32,7 @@ public class ScrollingCameraScript : MonoBehaviour
             transform.position = new Vector3(Random.Range((int)_leftLimit, (int)_rightLimit),0,-10);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector2 mousePosition = new Vector2(Input.mousePosition.x / Screen.width, Input.mousePosition.y / Screen.height);
 
@@ -57,7 +57,7 @@ public class ScrollingCameraScript : MonoBehaviour
 
         if (mouseDirection != Vector2.zero)
         {
-            transform.position += new Vector3(mouseDirection.x, mouseDirection.y, 0);
+            transform.position += new Vector3(mouseDirection.x, mouseDirection.y, 0) * Time.deltaTime;
         }
     }
 }
