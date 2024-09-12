@@ -57,6 +57,17 @@ MonoBehaviour:
   FalseHideoutDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  _shotCharacterSound: []
+  _shotNearMissed: []
+  _shotMissed: []
+  _falseTargetSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  _minWaitingFalseTargetAnimation: 0
+  _maxWaitingFalseTargetAnimation: 1
+  _falseTargetNumberRotation: 6
+  _falseTargetRotatingDegree: 5
+  _falseTargetRotatingDuration: 0.01
 --- !u!212 &7837550721815236631
 SpriteRenderer:
   m_ObjectHideFlags: 0

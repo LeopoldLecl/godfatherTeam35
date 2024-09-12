@@ -26,6 +26,15 @@ public class TargetScript : MonoBehaviour
     [SerializeField] List<AudioClip> _shotNearMissed;
     [SerializeField] List<AudioClip> _shotMissed;
 
+    [Header("FalseTarget")]
+    [SerializeField] List<AudioClip> _falseTargetSounds;
+    [SerializeField] float _minWaitingFalseTargetAnimation;
+    [SerializeField] float _maxWaitingFalseTargetAnimation;
+    [SerializeField] float _falseTargetNumberRotation;
+    [SerializeField] float _falseTargetRotatingDegree;
+    [SerializeField] float _falseTargetRotatingDuration;
+
+    Coroutine _falseTargetCoroutine;
     SpriteRenderer _sr;
     
     private bool _isAimed;
@@ -42,7 +51,15 @@ public class TargetScript : MonoBehaviour
         if (_isTarget)
             _sr.sprite = _hiddenImage;
         else
-            _sr.sprite = Random.Range(0, 2) == 0 ? _normalImage : _falselyHiddenImage;
+        {
+            if (Random.Range(0, 2) == 0)
+            {
+                _sr.sprite = _falselyHiddenImage;
+                _falseTargetCoroutine = StartCoroutine(FalseTargetAnimation());
+            }
+            else
+                _sr.sprite = _normalImage;
+        }
     }
 
     private void OnEnable()
@@ -67,6 +84,7 @@ public class TargetScript : MonoBehaviour
             else
             {
                 _isDestroyed = true;
+                StopCoroutine(_falseTargetCoroutine);
                 FalseHideoutDestroyed?.Invoke();
             }
         }
@@ -75,7 +93,11 @@ public class TargetScript : MonoBehaviour
     IEnumerator DeathAnimationRoutine()
     {
         RightHideoutDestroyed?.Invoke();
-        yield return new WaitForSeconds(0);
+
+        //Choisit un son random
+        AudioClip deathSound = _shotCharacterSound[Random.Range(0, _shotCharacterSound.Count)];
+        SoundManager.instance.SpawnSound(deathSound,transform.position);
+        yield return new WaitForSeconds(deathSound.length); //Attend pour la durée du son
         _endCanvas.SetActive(true);
     }
 
@@ -90,4 +112,32 @@ public class TargetScript : MonoBehaviour
             _isAimed = false;
     }
 
+
+    IEnumerator FalseTargetAnimation()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(_minWaitingFalseTargetAnimation,_maxWaitingFalseTargetAnimation));
+
+            SoundManager.instance.SpawnRandomSound(_falseTargetSounds, transform.position);
+
+            for(int i=0; i < _falseTargetNumberRotation; i++)
+            {
+                float timeElapsed = 0;
+                float startingPosition = transform.eulerAngles.z;
+                float endPosition = transform.eulerAngles.z + _falseTargetRotatingDegree;
+                while (timeElapsed < _falseTargetRotatingDuration)
+                {
+                    Vector3 newEulerAngles = transform.eulerAngles;
+                    newEulerAngles.z = Mathf.Lerp(startingPosition, endPosition, timeElapsed / _falseTargetRotatingDuration);
+                    transform.eulerAngles = newEulerAngles;
+                    timeElapsed += Time.deltaTime;
+                    yield return null;
+                }
+                _falseTargetRotatingDegree *= -1;
+            }
+
+            transform.eulerAngles = Vector3.zero;
+        }
+    }
 }

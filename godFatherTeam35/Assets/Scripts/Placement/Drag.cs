@@ -5,24 +5,33 @@ using UnityEngine;
 
 public class Drag : MonoBehaviour
 {
-    private PlacementButtonScript _overlapedButton;
+    [SerializeField] List<AudioClip> placedSounds;
 
+    private PlacementButtonScript _overlapedButton;
     private Vector2 _startingPosition;
     private Vector3 _offset;
     private bool _lockOnCamera;
 
     public static Action<GameObject> HasChosePlacement;
 
+
     private void Awake()
     {
         _startingPosition = transform.position;
+        _lockOnCamera = true;
     }
 
     private void OnEnable()
     {
         //Reset position when (re)activated
         transform.position = _startingPosition;
-        _lockOnCamera = true;
+
+        //Si pas lock sur Camera -> alors repositionnement
+        if (!_lockOnCamera)
+        {
+            _lockOnCamera = true;
+            SoundManager.instance.SpawnRandomSound(placedSounds, transform.position);
+        }
     }
 
     private void Update()
@@ -57,6 +66,7 @@ public class Drag : MonoBehaviour
         HasChosePlacement.Invoke(gameObject);
         _overlapedButton.SelectPosition();
         gameObject.SetActive(false);
+        SoundManager.instance.SpawnRandomSound(placedSounds, transform.position);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

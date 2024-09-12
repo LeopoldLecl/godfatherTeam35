@@ -453,7 +453,11 @@ MonoBehaviour:
   _shakeRandomMinimum: 0.5
   _shakeRandomMaximum: 1
   _shakeRandomMaxNumber: 8
-  _reloadingSounds: []
+  _reloadingSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!233 &254277982
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -520,7 +524,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _armScript: {fileID: 254277981}
   _reloadingTime: 5
-  _fireSounds: []
+  _fireSounds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!58 &254277985
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1877,7 +1885,7 @@ PrefabInstance:
       objectReference: {fileID: 1983970023}
     - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
       propertyPath: _correspondingPlacement
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
