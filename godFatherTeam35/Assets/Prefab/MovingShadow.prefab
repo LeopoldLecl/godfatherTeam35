@@ -58,6 +58,9 @@ MonoBehaviour:
   _stepSpeed: 0.4
   _stepAmplitude: 0.1
   _TimeBetweenCycles: 1
+  _movingSounds:
+  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
 --- !u!1 &3402598711820293866
 GameObject:
   m_ObjectHideFlags: 0

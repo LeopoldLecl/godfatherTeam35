@@ -16,6 +16,7 @@ public class MovingShadowScript : MonoBehaviour
     [SerializeField] private float _stepSpeed;
     [SerializeField] private float _stepAmplitude;
     [SerializeField] private float _TimeBetweenCycles;
+    [SerializeField] private List<AudioClip> _movingSounds;
 
     SpriteRenderer _shadowSR;
     Coroutine _walkingCoroutine;
@@ -63,6 +64,9 @@ public class MovingShadowScript : MonoBehaviour
 
         while (true)
         {
+            if (SoundManager.instance != null)
+                SoundManager.instance.SpawnRandomSound(_movingSounds,transform.position);
+
             timeElapsed = 0;
             //Walk animation
             while (timeElapsed < _duration)

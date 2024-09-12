@@ -59,10 +59,11 @@ MonoBehaviour:
       m_Calls: []
   _shotCharacterSound:
   - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  _shotNearMissed:
+  _shotNearMissedSound:
   - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  _shotMissed:
+  _shotMissedSound:
   - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  _nearMissedShotDistance: 5
   _falseTargetSounds:
   - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
   - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}

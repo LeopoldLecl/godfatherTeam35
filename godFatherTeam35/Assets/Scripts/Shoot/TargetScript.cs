@@ -23,8 +23,9 @@ public class TargetScript : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField] List<AudioClip> _shotCharacterSound;
-    [SerializeField] List<AudioClip> _shotNearMissed;
-    [SerializeField] List<AudioClip> _shotMissed;
+    [SerializeField] List<AudioClip> _shotNearMissedSound;
+    [SerializeField] List<AudioClip> _shotMissedSound;
+    [SerializeField] float _nearMissedShotDistance;
 
     [Header("FalseTarget")]
     [SerializeField] List<AudioClip> _falseTargetSounds;
@@ -80,6 +81,7 @@ public class TargetScript : MonoBehaviour
                 GameManager.Instance.IsPlayerHit = true;
                 GameManager.Instance.GameEnded = true;
                 StartCoroutine(DeathAnimationRoutine());
+                return;
             }
             else
             {
@@ -87,6 +89,27 @@ public class TargetScript : MonoBehaviour
                 if(_falseTargetCoroutine != null)
                     StopCoroutine(_falseTargetCoroutine);
                 FalseHideoutDestroyed?.Invoke();
+                return;
+            }
+        }
+
+        if (_isTarget)
+        {
+            Vector3 mousePo = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePo.z = 0;
+
+            float distance = Vector2.Distance(mousePo, transform.position);
+            if(distance < _nearMissedShotDistance)
+            {
+                if (SoundManager.instance != null)
+                    SoundManager.instance.SpawnRandomSound(_shotNearMissedSound, transform.position);
+                print("near");
+            }
+            else
+            {
+                if (SoundManager.instance != null)
+                    SoundManager.instance.SpawnRandomSound(_shotMissedSound, transform.position);
+                print("missed");
             }
         }
     }
