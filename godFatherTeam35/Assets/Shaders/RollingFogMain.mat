@@ -54,9 +54,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FogSize: 0.5
-    - _FogSpeed: 0.78
+    - _FogSize: 0.65
+    - _FogSpeed: 0.8
     - _WorldSpace: 1
     m_Colors:
-    - _FogColor: {r: 1, g: 1, b: 1, a: 0.1176471}
+    - _FogColor: {r: 1, g: 1, b: 1, a: 0.078431375}
   m_BuildTextureStacks: []
