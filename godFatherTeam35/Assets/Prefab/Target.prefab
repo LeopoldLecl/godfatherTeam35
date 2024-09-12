@@ -57,12 +57,15 @@ MonoBehaviour:
   FalseHideoutDestroyed:
     m_PersistentCalls:
       m_Calls: []
-  _shotCharacterSound: []
-  _shotNearMissed: []
-  _shotMissed: []
+  _shotCharacterSound:
+  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  _shotNearMissed:
+  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  _shotMissed:
+  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
   _falseTargetSounds:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
   _minWaitingFalseTargetAnimation: 0
   _maxWaitingFalseTargetAnimation: 1
   _falseTargetNumberRotation: 6
