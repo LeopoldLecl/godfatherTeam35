@@ -224,7 +224,8 @@ MonoBehaviour:
   shakeDuration: 0.07
   shakeMagnitude: 0.17
   camera: {fileID: 519420031}
-  particlePrefab: {fileID: 5954917953467700514, guid: 2289021a84caaca489728ff6cec3844a, type: 3}
+  particleFumes: {fileID: 5954917953467700514, guid: 2289021a84caaca489728ff6cec3844a, type: 3}
+  particuleImpact: {fileID: 255041462727067789, guid: b4febfe1ba4c4bc419c5fc7bc4c66b42, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
