@@ -29,9 +29,7 @@ public class ScrollingCameraScript : MonoBehaviour
     private void Start()
     {
         if (_RandomSpawnX)
-        {
-            transform.position = new Vector2(Random.Range(_leftLimit, _rightLimit),0);
-        }
+            transform.position = new Vector3(Random.Range((int)_leftLimit, (int)_rightLimit),0,-10);
     }
 
     private void Update()
