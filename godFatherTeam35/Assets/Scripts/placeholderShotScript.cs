@@ -74,7 +74,7 @@ public class placeholderShotScript : MonoBehaviour
         else
         {
             // Remet la caméra à sa position initiale une fois le shake terminé
-            cameraTransform.localPosition = initialPosition;
+            //cameraTransform.localPosition = initialPosition;
         }
     }
 
