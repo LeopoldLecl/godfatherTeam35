@@ -63,6 +63,11 @@ public class ShooterArmScript : MonoBehaviour
             //Shaking trigger condition
             if (Vector2.Distance(transform.position, mousePo) < _shakeMinDistance)
             {
+                //Stop random shaking
+                if (_shakingRandomCoroutine != null)
+                    StopCoroutine(RandomShaking());
+
+                //Activate shaking with delay
                 if (_shakingCoroutine == null)
                     _shakingCoroutine = StartCoroutine(ShakingDelay());
             }
@@ -107,17 +112,19 @@ public class ShooterArmScript : MonoBehaviour
 
     IEnumerator RandomShaking()
     {
-        yield return new WaitForSeconds(Random.Range(_shakeRandomMinimum, _shakeRandomMaximum));
-        //Change direction randomly in function of Rate
-        _isShaking = true;
-        //Do a random number of shake
-        for(int i= 2; i<_shakeRandomMaxNumber; i++)
+        while (true)
         {
-            _shakeDirection = new Vector2(Random.Range(-1, 2), Random.Range(-1, 2));
-            yield return new WaitForSeconds(_shakeRate);
+            yield return new WaitForSeconds(Random.Range(_shakeRandomMinimum, _shakeRandomMaximum));
+
+            _isShaking = true;
+            //Do a random number of shake
+            for (int i = 2; i < _shakeRandomMaxNumber; i++)
+            {
+                _shakeDirection = new Vector2(Random.Range(-1, 2), Random.Range(-1, 2));
+                yield return new WaitForSeconds(_shakeRate);
+            }
+            _isShaking = false;
         }
-        _isShaking = false;
-        _shakingRandomCoroutine = null;
     }
 
     IEnumerator ShakingDelay()

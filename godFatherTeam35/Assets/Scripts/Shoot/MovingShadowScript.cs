@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovingShadowScript : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private List<Sprite> _imagesList;
     [SerializeField] private Transform _firstPoint;
     [SerializeField] private Transform _secondPoint;
     [SerializeField] private Transform _shadowTransform;
@@ -38,6 +39,7 @@ public class MovingShadowScript : MonoBehaviour
         float timeElapsed = 0;
         Vector3 startingPosition = Vector3.zero;
         Vector3 endingPosition = _secondPoint.localPosition;
+        _shadowSR.sprite = _imagesList[Random.Range(0, _imagesList.Count)];
 
         //Initialization of walking mode
         switch (_WalkingMode)
@@ -101,6 +103,7 @@ public class MovingShadowScript : MonoBehaviour
             _shadowSR.gameObject.SetActive(false);
             yield return new WaitForSeconds(_TimeBetweenCycles);
             _shadowSR.gameObject.SetActive(true);
+            _shadowSR.sprite = _imagesList[Random.Range(0, _imagesList.Count)];
         }
 
     }

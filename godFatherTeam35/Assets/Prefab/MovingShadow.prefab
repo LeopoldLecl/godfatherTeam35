@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b436efa2248b3a4b9959796d64999e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _imagesList:
+  - {fileID: 21300000, guid: 8ef755d39e9f32844b876356029b62f0, type: 3}
+  - {fileID: 21300000, guid: d74e09e7fc3654140872f2e8956eb78b, type: 3}
   _firstPoint: {fileID: 7675652198674248199}
   _secondPoint: {fileID: 7428198079778657422}
   _shadowTransform: {fileID: 7185501368741140149}
