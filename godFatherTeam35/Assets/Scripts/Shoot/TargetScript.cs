@@ -14,8 +14,8 @@ public class TargetScript : MonoBehaviour
 
     [Header("Images")]
     [SerializeField] Sprite _normalImage;
-    [SerializeField] Sprite _hiddenImage;
-    [SerializeField] Sprite _falselyHiddenImage;
+    [SerializeField] GameObject _hiddenObject;
+    [SerializeField] GameObject _falselyHiddenObject;
 
     [Header("Events")]
     [SerializeField] UnityEvent RightHideoutDestroyed;
@@ -49,18 +49,10 @@ public class TargetScript : MonoBehaviour
         if (GameManager.Instance != null)
             _isTarget = GameManager.Instance.PlacementPositionIndex == _correspondingPlacement;
 
-        if (_isTarget)
-            _sr.sprite = _hiddenImage;
-        else
-        {
-            if (Random.Range(0, 2) == 0)
-            {
-                _sr.sprite = _falselyHiddenImage;
-                _falseTargetCoroutine = StartCoroutine(FalseTargetAnimation());
-            }
-            else
-                _sr.sprite = _normalImage;
-        }
+        _hiddenObject.SetActive(_isTarget);
+        _falselyHiddenObject.SetActive(!_isTarget);
+
+        _falseTargetCoroutine = StartCoroutine(FalseTargetAnimation());
     }
 
     private void OnEnable()
@@ -86,7 +78,8 @@ public class TargetScript : MonoBehaviour
             else
             {
                 _isDestroyed = true;
-                if(_falseTargetCoroutine != null)
+                _falselyHiddenObject.SetActive(false);
+                if (_falseTargetCoroutine != null)
                     StopCoroutine(_falseTargetCoroutine);
                 FalseHideoutDestroyed?.Invoke();
                 return;
@@ -103,13 +96,11 @@ public class TargetScript : MonoBehaviour
             {
                 if (SoundManager.instance != null)
                     SoundManager.instance.SpawnRandomSound(_shotNearMissedSound, transform.position);
-                print("near");
             }
             else
             {
                 if (SoundManager.instance != null)
                     SoundManager.instance.SpawnRandomSound(_shotMissedSound, transform.position);
-                print("missed");
             }
         }
     }
