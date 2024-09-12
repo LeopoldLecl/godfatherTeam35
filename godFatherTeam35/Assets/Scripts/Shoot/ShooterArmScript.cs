@@ -105,7 +105,7 @@ public class ShooterArmScript : MonoBehaviour
             }
 
             _rb.MovePosition(mousePo);
-            _rb.SetRotation(_armTransform.eulerAngles.z + 1);
+            _rb.SetRotation(_armTransform.eulerAngles.z + 5);
 
             Vector2 newEndPosition = new Vector2(transform.position.x / _endPointXFollow, transform.position.y / _endPointYFollow + _endPointDefaultYPosition);
             _rbEndPoint.MovePosition(newEndPosition);
