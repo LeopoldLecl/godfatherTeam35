@@ -581,6 +581,10 @@ PrefabInstance:
       propertyPath: _WalkingMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6850806583699748902, guid: 5f5b50346247e15468447504582b0328, type: 3}
+      propertyPath: _TimeBetweenCycles
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7428198079778657422, guid: 5f5b50346247e15468447504582b0328, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15
@@ -1591,7 +1595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6850806583699748902, guid: 5f5b50346247e15468447504582b0328, type: 3}
       propertyPath: _TimeBetweenCycles
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7428198079778657422, guid: 5f5b50346247e15468447504582b0328, type: 3}
       propertyPath: m_LocalPosition.x

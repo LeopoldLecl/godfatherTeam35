@@ -69,11 +69,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9519a8b033db6ee4281dc9613e744da8, type: 3}
   - {fileID: 8300000, guid: f8d94c4eb2a1bc14aac9f166f713879b, type: 3}
   - {fileID: 8300000, guid: 5ea7ce54b851e1b4c98937474bf23356, type: 3}
-  _minWaitingFalseTargetAnimation: 0
-  _maxWaitingFalseTargetAnimation: 1
-  _falseTargetNumberRotation: 6
+  _minWaitingFalseTargetAnimation: 7
+  _maxWaitingFalseTargetAnimation: 14
+  _falseTargetNumberRotation: 20
   _falseTargetRotatingDegree: 5
-  _falseTargetRotatingDuration: 0.01
+  _falseTargetRotatingDuration: 0.05
 --- !u!212 &7837550721815236631
 SpriteRenderer:
   m_ObjectHideFlags: 0
