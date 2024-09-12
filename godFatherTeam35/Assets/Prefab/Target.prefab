@@ -58,15 +58,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _shotCharacterSound:
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  - {fileID: 8300000, guid: eb3815dd202a7d9419fa7952a8f0546e, type: 3}
+  - {fileID: 8300000, guid: 0b9896d8c5ba09e4a8a7106c7534d0ec, type: 3}
   _shotNearMissedSound:
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  - {fileID: 8300000, guid: 6cc3bbf7a49d1e94aacaa54954af2c4b, type: 3}
   _shotMissedSound:
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  - {fileID: 8300000, guid: e2a12067465c42a4da3568e7bfa0cd5e, type: 3}
   _nearMissedShotDistance: 5
   _falseTargetSounds:
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  - {fileID: 8300000, guid: 9519a8b033db6ee4281dc9613e744da8, type: 3}
+  - {fileID: 8300000, guid: f8d94c4eb2a1bc14aac9f166f713879b, type: 3}
+  - {fileID: 8300000, guid: 5ea7ce54b851e1b4c98937474bf23356, type: 3}
   _minWaitingFalseTargetAnimation: 0
   _maxWaitingFalseTargetAnimation: 1
   _falseTargetNumberRotation: 6

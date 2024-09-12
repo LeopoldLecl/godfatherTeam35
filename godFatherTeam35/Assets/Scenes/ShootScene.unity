@@ -454,10 +454,7 @@ MonoBehaviour:
   _shakeRandomMaximum: 1
   _shakeRandomMaxNumber: 8
   _reloadingSounds:
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  - {fileID: 8300000, guid: cd5d68a66b0bd6a46a25d5fe557a0c09, type: 3}
 --- !u!233 &254277982
 HingeJoint2D:
   m_ObjectHideFlags: 0
@@ -835,6 +832,10 @@ PrefabInstance:
       propertyPath: _endCanvas
       value: 
       objectReference: {fileID: 1983970023}
+    - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
+      propertyPath: _falseTargetSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1311,6 +1312,10 @@ PrefabInstance:
     - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
       propertyPath: _correspondingPlacement
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
+      propertyPath: _falseTargetSounds.Array.size
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1995,6 +2000,14 @@ PrefabInstance:
       propertyPath: _correspondingPlacement
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
+      propertyPath: _falseTargetSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
+      propertyPath: _falseTargetSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ea7ce54b851e1b4c98937474bf23356, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2277,6 +2290,14 @@ PrefabInstance:
       propertyPath: _correspondingPlacement
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
+      propertyPath: _falseTargetSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
+      propertyPath: _falseTargetSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ea7ce54b851e1b4c98937474bf23356, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2582,6 +2603,14 @@ PrefabInstance:
       propertyPath: _correspondingPlacement
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
+      propertyPath: _falseTargetSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
+      propertyPath: _falseTargetSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ea7ce54b851e1b4c98937474bf23356, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2647,6 +2676,14 @@ PrefabInstance:
       propertyPath: _correspondingPlacement
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
+      propertyPath: _falseTargetSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5781315909929869864, guid: 835fecac4bc04884fb316e758e09f480, type: 3}
+      propertyPath: _falseTargetSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ea7ce54b851e1b4c98937474bf23356, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2774,7 +2811,8 @@ MonoBehaviour:
   _resultText: {fileID: 991949626}
   _placementScene: PlacementScene
   _menuScene: MainMenu
-  _crowdCheerSound: []
+  _crowdCheerSound:
+  - {fileID: 8300000, guid: 42e3da041c82cea42b53378de813a19c, type: 3}
   _wonText: You got him !
   _loseText: Damn ! You missed him !
 --- !u!1 &2097092671

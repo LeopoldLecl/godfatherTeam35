@@ -866,10 +866,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placedSounds:
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
-  - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  - {fileID: 8300000, guid: 9abae3fd784904f4a8b5ca8cd9282842, type: 3}
+  - {fileID: 8300000, guid: 46b2bfb515c84224880ef8f3e1d07924, type: 3}
+  - {fileID: 8300000, guid: f680ce7faa791c94b85ea13f6c757978, type: 3}
+  - {fileID: 8300000, guid: 95494856e23610f468f158c7faf73caf, type: 3}
 --- !u!61 &1005755272
 BoxCollider2D:
   m_ObjectHideFlags: 0
