@@ -33,7 +33,7 @@ public class TransitionScreenScript : MonoBehaviour
     {
         if (_transitionAnimationFinished && Input.GetKey(KeyCode.Space))
         {
-            SceneManager.LoadScene("ShootScene");
+            SceneManager.LoadScene(_ShootScene);
         }
     }
 
