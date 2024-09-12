@@ -1021,7 +1021,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c76017984c36e8346ba24eeae668add0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f41bbbdb5b8423640a05aa7a918b2a6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1570,7 +1570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6850806583699748902, guid: 5f5b50346247e15468447504582b0328, type: 3}
       propertyPath: _duration
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6850806583699748902, guid: 5f5b50346247e15468447504582b0328, type: 3}
       propertyPath: _stepSpeed
@@ -1924,7 +1924,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 81577c8f11ebdaf43bfa14880becc985, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86f4b07e95755f843b27c01f3bc66175, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2139,7 +2139,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3deaa8eaf02e59f4490a7aa6807f7d06, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a15e9a3f1126b154fb2693a554f78b6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2774,6 +2774,7 @@ MonoBehaviour:
   _resultText: {fileID: 991949626}
   _placementScene: PlacementScene
   _menuScene: MainMenu
+  _crowdCheerSound: []
   _wonText: You got him !
   _loseText: Damn ! You missed him !
 --- !u!1 &2097092671

@@ -12,6 +12,7 @@ public class EndCanvasScript : MonoBehaviour
     [Space(5)]
     [SerializeField] private string _placementScene;
     [SerializeField] private string _menuScene;
+    [SerializeField] List<AudioClip> _crowdCheerSound;
 
     [Header("End Text")]
     [SerializeField] private string _wonText;
@@ -33,5 +34,7 @@ public class EndCanvasScript : MonoBehaviour
     {
         _resultText.text = GameManager.Instance.IsPlayerHit ? _wonText : _loseText;
         Cursor.visible = true;
+
+        SoundManager.instance.SpawnRandomSound(_crowdCheerSound, Vector3.zero);
     }
 }
