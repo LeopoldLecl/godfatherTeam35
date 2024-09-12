@@ -22,7 +22,8 @@ public class placeholderShotScript : MonoBehaviour
 
     [SerializeField] private GameObject particleFumes;
     [SerializeField] private GameObject particuleImpact;
-
+    [Space(5)]
+    [SerializeField] private GameObject aimPoint;
 
 
 
