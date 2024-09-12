@@ -165,7 +165,8 @@ public class ShooterArmScript : MonoBehaviour
         }
 
         //Joue son
-        SoundManager.instance.SpawnRandomSound(_reloadingSounds,transform.position);
+        if(SoundManager.instance != null)
+            SoundManager.instance.SpawnRandomSound(_reloadingSounds,transform.position);
 
         //Rangement d'arme
         float timeElapsed = 0;

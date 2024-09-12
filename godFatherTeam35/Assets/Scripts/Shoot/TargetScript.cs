@@ -96,7 +96,10 @@ public class TargetScript : MonoBehaviour
 
         //Choisit un son random
         AudioClip deathSound = _shotCharacterSound[Random.Range(0, _shotCharacterSound.Count)];
-        SoundManager.instance.SpawnSound(deathSound,transform.position);
+
+        if (SoundManager.instance != null)
+            SoundManager.instance.SpawnSound(deathSound,transform.position);
+        
         yield return new WaitForSeconds(deathSound.length); //Attend pour la durée du son
         _endCanvas.SetActive(true);
     }
@@ -119,7 +122,8 @@ public class TargetScript : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(_minWaitingFalseTargetAnimation,_maxWaitingFalseTargetAnimation));
 
-            //SoundManager.instance.SpawnRandomSound(_falseTargetSounds, transform.position);
+            if (SoundManager.instance != null)
+                SoundManager.instance.SpawnRandomSound(_falseTargetSounds, transform.position);
 
             for(int i=0; i < _falseTargetNumberRotation; i++)
             {

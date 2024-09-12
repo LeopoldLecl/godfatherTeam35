@@ -30,7 +30,9 @@ public class Drag : MonoBehaviour
         if (!_lockOnCamera)
         {
             _lockOnCamera = true;
-            SoundManager.instance.SpawnRandomSound(placedSounds, transform.position);
+
+            if (SoundManager.instance != null)
+                SoundManager.instance.SpawnRandomSound(placedSounds, transform.position);
         }
     }
 
@@ -66,7 +68,9 @@ public class Drag : MonoBehaviour
         HasChosePlacement.Invoke(gameObject);
         _overlapedButton.SelectPosition();
         gameObject.SetActive(false);
-        SoundManager.instance.SpawnRandomSound(placedSounds, transform.position);
+
+        if (SoundManager.instance != null)
+            SoundManager.instance.SpawnRandomSound(placedSounds, transform.position);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

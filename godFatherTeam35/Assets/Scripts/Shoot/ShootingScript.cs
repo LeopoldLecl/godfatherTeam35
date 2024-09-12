@@ -21,7 +21,11 @@ public class ShootingScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !GameManager.Instance.GameEnded && !_isReloading)
         {
             HasFired.Invoke();
-            //SoundManager.instance.SpawnRandomSound(_fireSounds, transform.position);
+
+
+            if (SoundManager.instance != null)
+                SoundManager.instance.SpawnRandomSound(_fireSounds, transform.position);
+            
             _armScript.StartReload(_reloadingTime);
         } 
     }
