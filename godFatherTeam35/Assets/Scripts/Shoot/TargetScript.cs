@@ -119,7 +119,7 @@ public class TargetScript : MonoBehaviour
         {
             yield return new WaitForSeconds(Random.Range(_minWaitingFalseTargetAnimation,_maxWaitingFalseTargetAnimation));
 
-            SoundManager.instance.SpawnRandomSound(_falseTargetSounds, transform.position);
+            //SoundManager.instance.SpawnRandomSound(_falseTargetSounds, transform.position);
 
             for(int i=0; i < _falseTargetNumberRotation; i++)
             {

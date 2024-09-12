@@ -95,6 +95,19 @@ public class placeholderShotScript : MonoBehaviour
         shakeTimeRemaining = shakeDuration;
     }
 
+    private void SpawnParticlesAtAimPointPosition(GameObject particuleType, GameObject pointPosition)
+    {
+        // Obtient la position de la souris en coordonnées écran
+        Vector3 mousePosition = Input.mousePosition;
+
+        // Convertit la position de la souris en coordonnées monde (en prenant en compte la distance de la caméra)
+        Vector3 worldPosition = camera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, camera.nearClipPlane));
+
+        // Instancie le système de particules à la position calculée, avec la même rotation que le prefab
+        GameObject smokeObject = Instantiate(particuleType, worldPosition, Quaternion.identity);
+        smokeObject.transform.SetParent(pointPosition.transform);
+    }
+
     private void SpawnParticlesAtMousePosition(GameObject particuleType)
     {
         // Obtient la position de la souris en coordonnées écran
