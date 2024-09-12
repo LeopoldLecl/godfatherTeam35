@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fadeInImg: {fileID: 145587378}
-  _ShootScene: ShootScene
+  _ShootScene: NewShootScene
   _duration: 1
 --- !u!1001 &246448635
 PrefabInstance:
