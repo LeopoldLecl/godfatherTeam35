@@ -1,22 +1,29 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlacementButtonScript : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private SpriteRenderer _validationFillImage;
     [Space(5)]
     [SerializeField] private int _placementValue;
 
     [Header("Images")]
     [SerializeField] private GameObject _hiddenObject;
+    [Space(5)]
+    [SerializeField] private float _blinkingSpeed;
+    [SerializeField] private Color _blinkingHigh;
+    [SerializeField] private Color _blinkingLow;
 
     private SpriteRenderer _sr;
-    
+    private Coroutine _blinkingCoroutine;
+    private bool _isBlinking;
     private void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
+        _blinkingCoroutine = StartCoroutine(BlinkingLoop());
+        _isBlinking = true;
     }
 
     private void OnValidate()
@@ -30,19 +37,15 @@ public class PlacementButtonScript : MonoBehaviour
     private void Reset()
     {
         SpriteRenderer buttonSpriteRenderer = GetComponent<SpriteRenderer>();
-        if (_validationFillImage != null || buttonSpriteRenderer != null)
-        {
-            _validationFillImage.sprite = buttonSpriteRenderer.sprite;
-        }
     }
 
     private void Update() //Pas opti je sais mais merde...
     {
-        if (_validationFillImage != null)
+        if (_sr != null && GameManager.Instance != null)
         {
-            _validationFillImage.gameObject.SetActive(GameManager.Instance.PlacementPositionIndex == _placementValue || GameManager.Instance.PlacementPositionIndex == -1);
+            _isBlinking = (GameManager.Instance.PlacementPositionIndex == _placementValue || GameManager.Instance.PlacementPositionIndex == -1);
         }
-        if(_hiddenObject != null)
+        if(_hiddenObject != null && GameManager.Instance != null)
             _hiddenObject.SetActive(GameManager.Instance.PlacementPositionIndex == _placementValue);
     }
 
@@ -57,6 +60,16 @@ public class PlacementButtonScript : MonoBehaviour
         if (physicsRaycaster == null)
         {
             Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
+        }
+    }
+
+    IEnumerator BlinkingLoop()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(_blinkingSpeed);
+            if(_isBlinking)
+                _sr.color = _sr.color == _blinkingHigh ? _blinkingLow : _blinkingHigh;
         }
     }
 }
