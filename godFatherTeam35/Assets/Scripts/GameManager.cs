@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         //Reset placement position index & vector 3
         _placementPositionIndex = -1;
         _placementPosition = Vector3.zero;
+        _IsPlayerHit = false;
 
         GameEnded = false;
     }

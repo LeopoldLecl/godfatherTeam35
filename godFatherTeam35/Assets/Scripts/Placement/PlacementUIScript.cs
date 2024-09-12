@@ -6,14 +6,12 @@ using UnityEngine.TextCore.Text;
 
 public class PlacementUIScript : MonoBehaviour
 {
-    [SerializeField] private GameObject _CancelButton;
 
     private GameObject _character;
     private bool _canCancel;
 
     private void Awake()
     {
-        _CancelButton.SetActive(false);
         _canCancel = false;
     }
 
@@ -31,7 +29,6 @@ public class PlacementUIScript : MonoBehaviour
     private void SpawnCancelButton(GameObject character)
     {
         _character = character;
-        _CancelButton.SetActive(true);
         _canCancel = true;
     }
 
@@ -47,7 +44,6 @@ public class PlacementUIScript : MonoBehaviour
     {
         GameManager.Instance.PlacementPositionIndex = -1;
         _character.SetActive(true);
-        _CancelButton.SetActive(false);
         _canCancel = false;
     }
 }

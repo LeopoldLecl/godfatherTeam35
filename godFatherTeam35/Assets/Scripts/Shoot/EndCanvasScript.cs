@@ -10,7 +10,9 @@ public class EndCanvasScript : MonoBehaviour
     [SerializeField] private TMP_Text _resultText;
 
     [Space(5)]
-    [SerializeField] private string _firstScene;
+    [SerializeField] private string _placementScene;
+    [SerializeField] private string _menuScene;
+
     [Header("End Text")]
     [SerializeField] private string _wonText;
     [SerializeField] private string _loseText;
@@ -18,7 +20,13 @@ public class EndCanvasScript : MonoBehaviour
     public void RestartGame()
     {
         GameManager.Instance.ResetValues();
-        SceneManager.LoadScene(_firstScene);
+        SceneManager.LoadScene(_placementScene);
+    }
+
+    public void GoToMainMenu()
+    {
+        GameManager.Instance.ResetValues();
+        SceneManager.LoadScene(_menuScene);
     }
 
     private void OnEnable()
