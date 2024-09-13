@@ -61,6 +61,8 @@ MonoBehaviour:
   _movingSounds:
   - {fileID: 8300000, guid: ca04082c794f8cc45b4c89cd53460893, type: 3}
   - {fileID: 8300000, guid: 6c9e49970fedf6e47b6b9654af0ab177, type: 3}
+  _minSize: 0.3
+  _maxSize: 0.5
 --- !u!1 &3402598711820293866
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,9 @@ public class MovingShadowScript : MonoBehaviour
     [SerializeField] private float _stepAmplitude;
     [SerializeField] private float _TimeBetweenCycles;
     [SerializeField] private List<AudioClip> _movingSounds;
+    [Space(5)]
+    [SerializeField] private float _minSize;
+    [SerializeField] private float _maxSize;
 
     SpriteRenderer _shadowSR;
     Coroutine _walkingCoroutine;
@@ -60,7 +63,7 @@ public class MovingShadowScript : MonoBehaviour
                 break;
         }
 
-
+        yield return new WaitForSeconds(Random.Range(0,_TimeBetweenCycles));
 
         while (true)
         {
@@ -68,6 +71,10 @@ public class MovingShadowScript : MonoBehaviour
                 SoundManager.instance.SpawnRandomSound(_movingSounds,transform.position);
 
             timeElapsed = 0;
+
+            float newSize = Random.Range(_minSize, _maxSize);
+            transform.localPosition = new Vector3(newSize, newSize,1);
+
             //Walk animation
             while (timeElapsed < _duration)
             {

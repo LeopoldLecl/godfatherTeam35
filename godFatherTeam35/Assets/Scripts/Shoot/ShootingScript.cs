@@ -12,6 +12,7 @@ public class ShootingScript : MonoBehaviour
     [SerializeField] private float _reloadingTime;
     [Header("Sounds")]
     [SerializeField] private List<AudioClip> _fireSounds;
+    [SerializeField] private List<AudioClip> _shootSound;
 
     private bool _isReloading { get => _armScript.IsReloading; }
 
@@ -25,7 +26,11 @@ public class ShootingScript : MonoBehaviour
 
 
             if (SoundManager.instance != null)
+            {
                 SoundManager.instance.SpawnRandomSound(_fireSounds, transform.position);
+                SoundManager.instance.SpawnRandomSound(_shootSound, transform.position);
+
+            }
             
             _armScript.StartReload(_reloadingTime);
         }
