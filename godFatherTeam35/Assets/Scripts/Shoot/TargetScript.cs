@@ -25,6 +25,7 @@ public class TargetScript : MonoBehaviour
     [SerializeField] List<AudioClip> _shotCharacterSound;
     [SerializeField] List<AudioClip> _shotNearMissedSound;
     [SerializeField] List<AudioClip> _shotMissedSound;
+    [SerializeField] List<AudioClip> _FalseHideOutShot;
     [SerializeField] float _nearMissedShotDistance;
 
     [Header("FalseTarget")]
@@ -81,6 +82,8 @@ public class TargetScript : MonoBehaviour
                 _falselyHiddenObject.SetActive(false);
                 if (_falseTargetCoroutine != null)
                     StopCoroutine(_falseTargetCoroutine);
+
+                SoundManager.instance.SpawnRandomSound(_FalseHideOutShot, transform.position);
                 FalseHideoutDestroyed?.Invoke();
                 return;
             }
