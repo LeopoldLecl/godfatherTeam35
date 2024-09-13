@@ -745,7 +745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4755369204573338104, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.77
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4755369204573338104, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1707,19 +1707,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4755369204573338104, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 4755369204573338104, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 4755369204573338104, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.08
+      value: 1.89
       objectReference: {fileID: 0}
     - target: {fileID: 4755369204573338104, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.89
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: 4755369204573338104, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2353,7 +2353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498685490393872298, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.07
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2842622907665005565, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: _hiddenImage
@@ -2401,7 +2401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4402052960842316283, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_Size.y
-      value: 4.7132015
+      value: 2.222097
       objectReference: {fileID: 0}
     - target: {fileID: 4402052960842316283, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_Offset.x
@@ -2409,7 +2409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4402052960842316283, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_Offset.y
-      value: -0.015180111
+      value: 1.2303722
       objectReference: {fileID: 0}
     - target: {fileID: 4402052960842316283, guid: d92d5db2b9a7dc2418a1b9a7e3ce58cb, type: 3}
       propertyPath: m_IsTrigger
@@ -2603,6 +2603,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 95494856e23610f468f158c7faf73caf, type: 3}
   _normalSprite: {fileID: 21300000, guid: e3a8c5b40af20c040a671c149e2fb5ab, type: 3}
   _draggedImage: {fileID: 21300000, guid: a7a98311e8e50b14cb6499c2e09d30b9, type: 3}
+  _overlapedButton: {fileID: 0}
 --- !u!61 &1005755272
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3385,6 +3386,7 @@ GameObject:
   - component: {fileID: 1260298748}
   - component: {fileID: 1260298747}
   - component: {fileID: 1260298749}
+  - component: {fileID: 1260298750}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3594,6 +3596,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &1260298750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260298742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c41f62358972564e8de28fa0a5e2d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _crowdSound: {fileID: 8300000, guid: b74d816fa6891cb429782d12e1b63cc7, type: 3}
 --- !u!1 &1331475966
 GameObject:
   m_ObjectHideFlags: 0

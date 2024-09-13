@@ -9,7 +9,7 @@ public class Drag : MonoBehaviour
     [SerializeField] Sprite _normalSprite;
     [SerializeField] Sprite _draggedImage;
 
-    private PlacementButtonScript _overlapedButton;
+    public PlacementButtonScript _overlapedButton;
     private SpriteRenderer _sr;
     private Vector2 _startingPosition;
     private Vector3 _offset;
@@ -92,7 +92,9 @@ public class Drag : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _overlapedButton = null;
+        PlacementButtonScript overlapedPlacementScript = collision.GetComponent<PlacementButtonScript>();
+        if (overlapedPlacementScript == _overlapedButton)
+            _overlapedButton = null;
     }
 
     private Vector3 GetMouseWorldPos()
