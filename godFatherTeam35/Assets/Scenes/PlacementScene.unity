@@ -3527,17 +3527,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef16dd59abaeb444e84aceb23870b59f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _RandomSpawnX: 0
+  _RandomSpawnX: 1
   _leftLimit: -10
   _rightLimit: 10
   _topLimit: 0
   _bottomLimit: 0
-  _leftDeadZone: 0.2
-  _rightDeadZone: 0.8
-  _topDeadZone: 0.2
-  _bottomDeadZone: 0.8
-  _horizontalSpeed: 10
-  _verticalSpeed: 0.05
+  _leftDeadZone: 0.15
+  _rightDeadZone: 0.85
+  _topDeadZone: 0
+  _bottomDeadZone: 0
+  _horizontalSpeed: 8
+  _verticalSpeed: 0
 --- !u!114 &1260298748
 MonoBehaviour:
   m_ObjectHideFlags: 0

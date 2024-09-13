@@ -35,6 +35,7 @@ public class TargetScript : MonoBehaviour
     [SerializeField] float _falseTargetNumberRotation;
     [SerializeField] float _falseTargetRotatingDegree;
     [SerializeField] float _falseTargetRotatingDuration;
+    [SerializeField] bool _growInsteadOfShake;
 
     Coroutine _falseTargetCoroutine;
     SpriteRenderer _sr;
@@ -143,23 +144,39 @@ public class TargetScript : MonoBehaviour
             if (SoundManager.instance != null)
                 SoundManager.instance.SpawnRandomSound(_falseTargetSounds, transform.position);
 
-            for(int i=0; i < _falseTargetNumberRotation; i++)
+
+            Vector3 startingSize = transform.localScale;
+            Vector3 endSize = transform.localScale + new Vector3(_falseTargetRotatingDegree, _falseTargetRotatingDegree);
+            for (int i=0; i < _falseTargetNumberRotation; i++)
             {
                 float timeElapsed = 0;
                 float startingPosition = transform.eulerAngles.z;
                 float endPosition = transform.eulerAngles.z + _falseTargetRotatingDegree;
+
                 while (timeElapsed < _falseTargetRotatingDuration)
                 {
-                    Vector3 newEulerAngles = transform.eulerAngles;
-                    newEulerAngles.z = Mathf.Lerp(startingPosition, endPosition, timeElapsed / _falseTargetRotatingDuration);
-                    transform.eulerAngles = newEulerAngles;
-                    timeElapsed += Time.deltaTime;
-                    yield return null;
+                    if (_growInsteadOfShake)
+                    {
+                        //Growing shaking
+                        transform.localScale = Vector3.Lerp(startingSize, endSize, timeElapsed / _falseTargetRotatingDuration);
+                        timeElapsed += Time.deltaTime;
+                        yield return null;
+                    }
+                    else
+                    {
+                        //Rotation shaking
+                        Vector3 newEulerAngles = transform.eulerAngles;
+                        newEulerAngles.z = Mathf.Lerp(startingPosition, endPosition, timeElapsed / _falseTargetRotatingDuration);
+                        transform.eulerAngles = newEulerAngles;
+                        timeElapsed += Time.deltaTime;
+                        yield return null;
+                    }
                 }
                 _falseTargetRotatingDegree *= -1;
             }
 
             transform.eulerAngles = Vector3.zero;
+            transform.localScale = startingSize;
         }
     }
 }
