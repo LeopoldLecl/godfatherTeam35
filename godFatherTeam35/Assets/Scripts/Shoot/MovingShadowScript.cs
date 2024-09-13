@@ -75,7 +75,7 @@ public class MovingShadowScript : MonoBehaviour
             timeElapsed = 0;
 
             float newSize = Random.Range(_minSize, _maxSize);
-            transform.localScale = new Vector3(newSize, newSize,1);
+            _shadowSR.transform.localScale = new Vector3(newSize, newSize,1);
             actualSpeed = Random.Range(_stepSpeed - _stepSpeedRandom, _stepSpeed + _stepSpeedRandom);
             //Walk animation
             while (timeElapsed < _duration)
