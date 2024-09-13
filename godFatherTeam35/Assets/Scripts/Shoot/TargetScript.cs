@@ -26,6 +26,7 @@ public class TargetScript : MonoBehaviour
     [SerializeField] List<AudioClip> _shotNearMissedSound;
     [SerializeField] List<AudioClip> _shotMissedSound;
     [SerializeField] List<AudioClip> _FalseHideOutShot;
+    [SerializeField] AudioClip _shotCharS;
     [SerializeField] float _nearMissedShotDistance;
 
     [Header("FalseTarget")]
@@ -114,10 +115,14 @@ public class TargetScript : MonoBehaviour
         RightHideoutDestroyed?.Invoke();
 
         //Choisit un son random
-        AudioClip deathSound = _shotCharacterSound[Random.Range(0, _shotCharacterSound.Count)];
+        AudioClip deathSound = _shotCharacterSound[Random.Range(0, _shotCharacterSound.Count)];        
 
         if (SoundManager.instance != null)
+        {
             SoundManager.instance.SpawnSound(deathSound,transform.position);
+            SoundManager.instance.SpawnSound(_shotCharS,transform.position);
+
+        }
         
         yield return new WaitForSeconds(deathSound.length); //Attend pour la durée du son
         _endCanvas.SetActive(true);

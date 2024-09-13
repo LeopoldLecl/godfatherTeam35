@@ -152,6 +152,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e2a12067465c42a4da3568e7bfa0cd5e, type: 3}
   _FalseHideOutShot:
   - {fileID: 8300000, guid: e9ebb3ba0ec7ffa409535eca556063d0, type: 3}
+  _shotCharS: {fileID: 8300000, guid: 2ffba1ce3eea9d343809353eb5bfe724, type: 3}
   _nearMissedShotDistance: 2
   _falseTargetSounds:
   - {fileID: 8300000, guid: 9519a8b033db6ee4281dc9613e744da8, type: 3}
@@ -162,6 +163,7 @@ MonoBehaviour:
   _falseTargetNumberRotation: 20
   _falseTargetRotatingDegree: 5
   _falseTargetRotatingDuration: 0.05
+  _growInsteadOfShake: 0
 --- !u!212 &7837550721815236631
 SpriteRenderer:
   m_ObjectHideFlags: 0
