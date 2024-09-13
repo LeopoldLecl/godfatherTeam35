@@ -14,6 +14,7 @@ public class MovingShadowScript : MonoBehaviour
     [SerializeField] private _animationMode _WalkingMode;
     [SerializeField] private float _duration;
     [SerializeField] private float _stepSpeed;
+    [SerializeField] private float _stepSpeedRandom;
     [SerializeField] private float _stepAmplitude;
     [SerializeField] private float _TimeBetweenCycles;
     [SerializeField] private List<AudioClip> _movingSounds;
@@ -41,6 +42,7 @@ public class MovingShadowScript : MonoBehaviour
     IEnumerator WalkingCoroutine()
     {
         float timeElapsed = 0;
+        float actualSpeed = _stepSpeed;
         Vector3 startingPosition = Vector3.zero;
         Vector3 endingPosition = _secondPoint.localPosition;
         _shadowSR.sprite = _imagesList[Random.Range(0, _imagesList.Count)];
@@ -73,8 +75,8 @@ public class MovingShadowScript : MonoBehaviour
             timeElapsed = 0;
 
             float newSize = Random.Range(_minSize, _maxSize);
-            transform.localPosition = new Vector3(newSize, newSize,1);
-
+            transform.localScale = new Vector3(newSize, newSize,1);
+            actualSpeed = Random.Range(_stepSpeed - _stepSpeedRandom, _stepSpeed + _stepSpeedRandom);
             //Walk animation
             while (timeElapsed < _duration)
             {

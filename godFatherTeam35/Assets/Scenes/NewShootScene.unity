@@ -824,8 +824,8 @@ MonoBehaviour:
   _rotationPoint: {fileID: 1827429186}
   _reloadPoint: {fileID: 672984056}
   _endPointDefaultYPosition: -12
-  _endPointYFollow: 2
-  _endPointXFollow: 1.5
+  _endPointYFollow: 1.7
+  _endPointXFollow: 1.3
   _shakeDelay: 2
   _shakeMinDistance: 1
   _shakeRate: 0.5
@@ -2197,6 +2197,10 @@ PrefabInstance:
     - target: {fileID: 6850806583699748902, guid: 5f5b50346247e15468447504582b0328, type: 3}
       propertyPath: _WalkingMode
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850806583699748902, guid: 5f5b50346247e15468447504582b0328, type: 3}
+      propertyPath: _stepSpeedRandom
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6850806583699748902, guid: 5f5b50346247e15468447504582b0328, type: 3}
       propertyPath: _TimeBetweenCycles
