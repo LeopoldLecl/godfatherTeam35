@@ -44,8 +44,9 @@ public class placeholderShotScript : MonoBehaviour
 
     private void Update()
     {
+        /*
         // Si le bouton gauche de la souris est cliqué et que le matériau n'a pas déjà été changé
-        if (Input.GetMouseButtonDown(0) && !isMaterialChanged && IsReady)
+        if (Input.GetMouseButtonDown(0)  && IsReady)
         {
             // Change le matériel en ExplosionMat
             sprite.material = ExplosionMat;
@@ -60,7 +61,7 @@ public class placeholderShotScript : MonoBehaviour
 
 
         }
-
+        */
         // Gestion du Screen Shake
         if (shakeTimeRemaining > 0)
         {
@@ -76,6 +77,23 @@ public class placeholderShotScript : MonoBehaviour
         {
             // Remet la caméra à sa position initiale une fois le shake terminé
             //cameraTransform.localPosition = initialPosition;
+        }
+    }
+
+    public void ActivateShoot()
+    {
+        if (!isMaterialChanged)
+        {
+            // Change le matériel en ExplosionMat
+            sprite.material = ExplosionMat;
+
+            // Lance la coroutine pour restaurer le matériau après un délai
+            StartCoroutine(RestoreMaterialAfterDelay(changeDuration));
+
+            // Déclenche le screen shake au même moment que le changement de matériel
+            TriggerShake(shakeDuration, shakeMagnitude);
+            SpawnParticlesAtMousePosition(particuleImpact);
+            SpawnParticlesAtMousePosition(particleFumes);
         }
     }
 

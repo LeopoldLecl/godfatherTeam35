@@ -32,9 +32,10 @@ public class ShootingScript : MonoBehaviour
 
             }
             
+            _shaderShotScript.ActivateShoot();
             _armScript.StartReload(_reloadingTime);
         }
 
-        _shaderShotScript.IsReady = _isReloading;
+        
     }
 }
